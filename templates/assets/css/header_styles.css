@@ -36,7 +36,11 @@ nav .navbar .logo a {
 nav .navbar .logo a img {
   height: 50px;
   width: auto;
-  margin-right: 20px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
 }
 
 nav .navbar .logo a{
@@ -44,7 +48,7 @@ nav .navbar .logo a{
   font-size: 27px;
   font-weight: 600;
   text-decoration: none;
-  margin-right: 50px;
+  margin-right: 10px;
 }
 
 nav .navbar .menu {
@@ -73,4 +77,27 @@ nav .navbar .menu {
   font-size: 18px;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.15);
+}
+.navbar .actions {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .actions .action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3a3939; /* Button background color */
+  color: #fff; /* Button text color */
+  text-decoration: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border-radius: 5px; /* Rounded corners for the button */
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.navbar .actions .action-button img {
+  height: 30px; /* Adjust the size of the shopping bag icon */
+  width: auto;
 }
