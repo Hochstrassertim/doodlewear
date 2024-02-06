@@ -1,4 +1,4 @@
-from flask import *
+from flask import Flask, request, render_template, url_for, redirect
 
 app = Flask(__name__)
 
@@ -11,6 +11,10 @@ def hello_world():  # put application's code here
 def login_home() -> str:
     app.logger.info("Rendering login form")
     return render_template("profile/index.html")
+
+#@app.route("/submit", methods=["POST"])
+#def login_submit() -> str:
+
 
 
 if __name__ == '__main__':

@@ -3,8 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        input {
+            margin-bottom: 5px;
+            margin-left: 2%;
+            height: 40px;
+            width: 94%;
+        }
+        #login_form {
+            #form_title {
+                height: 100px;
+                background-color: #444;
+                border-top-left-radius: 25px;
+                border-top-right-radius: 25px;
+                margin-bottom: 10px;
+                #login_h1 {
+                    color: white;
+                    width: 50%;
+                    text-align: center;
+                    margin-left: 25%;
+                    margin-top: 10px;
+                }
+            }
+            width: 30%;
+            height: 650px;
+            margin-left: 35%;
+            border-radius: 25px;
+            background-color: #ccc;
+        }
+    </style>
 </head>
 <body>
-<h1>it works</h1>
+<div id="login_form">
+    <form action="{{ url_for('login_home') }}" method="get">
+        <div id="form_title">
+            <h1 id="login_h1">Login/Register</h1>
+        </div>
+        <input type="text" placeholder="First name" id="first_name"><br>
+        <input type="text" placeholder="Last name" id="last_name"><br>
+        <input type="email" placeholder="Email" id="email"><br>
+        <input type="text" placeholder="Phone number" id="phone"><br>
+        <input type="text" placeholder="Street and house number" id="street"><br>
+        <input type="text" placeholder="City" id="city"><br>
+        <input type="text" placeholder="Postal code" id="postal_code"><br>
+        <input type="text" placeholder="First name" id="first_name"><br>
+        <input type="date" placeholder="Date of birth" id="birth_date"><br>
+        <input type="submit" value="Register" id="submit">
+    </form>
+</div>
 </body>
 </html>
