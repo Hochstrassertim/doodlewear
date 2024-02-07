@@ -5,15 +5,15 @@
     <link rel="stylesheet" href="../static/assets/css/header_styles.css">
 </head>
 <body>
-  <nav>
+<nav>
   <div class="navbar">
     <div class="logo"><a href="index.html"><img src="../static/assets/img/Strichman_logo.JPG" alt="CodingLab Logo"></a></div>
     <div class="logo"><a href="#">Doodlewear</a></div>
     <ul class="menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="shop.html">Shop</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="story.html">Story</a></li>
+      <li><a href="index.html" class="nav-home">Home</a></li>
+      <li><a href="shop.html" class="nav-home">Shop</a></li>
+      <li><a href="about.html" class="nav-home">About</a></li>
+      <li><a href="story.html" class="nav-home">Story</a></li>
       <li><a href="#"></a></li>
       <li><a href="#"></a></li>
 
@@ -22,8 +22,10 @@
         <a href="login.html" class="action-button">Login</a>
         <a href="#" class="action-button"><img src="../static/assets/img/shopping_bag.png" alt="Shopping Bag"></a>
       </div>
-  </div>
-</nav>
+  </div><br>
 
+</nav>
+{% block content %}
+{% endblock %}
 </body>
 </html>
