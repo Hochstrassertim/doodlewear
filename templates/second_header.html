@@ -2,7 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../static/assets/css/header_styles.css">
+    <link rel="stylesheet" href="../static/assets/css/second_header.css">
+    <style>
+        /* Zusätzliche Anpassungen für die zweite Navbar */
+        .second-navbar {
+            background-color: #2d2b2b; /* Hintergrundfarbe */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            z-index: 100; /* Stellt sicher, dass die zweite Navbar über allem anderen liegt */
+        }
+
+        .second-navbar a {
+            color: #fff; /* Schriftfarbe */
+            text-decoration: none;
+            margin: 0 10px; /* Abstand zwischen den Links */
+            padding: 10px; /* Innenabstand der Links */
+        }
+
+        .second-navbar a:hover {
+            background-color: #555; /* Hintergrundfarbe bei Hover */
+            border-radius: 5px; /* Abrundung der Ecken */
+        }
+
+        /* Trennlinie zwischen den Navbars */
+        .navbar-divider {
+            width: 100%;
+            height: 1px;
+            background-color: black;
+            margin-bottom: 10px; /* Abstand zwischen den Navbars */
+        }
+    </style>
 </head>
 <body>
 <nav>
@@ -19,12 +50,27 @@
 
     </ul>
       <div class="actions">
-        <a href="login.html" class="action-button">Login</a>
+        <a href="#" class="action-button"><img src="../static/assets/img/white-user-interface.png" alt="user-interface"></a>
         <a href="#" class="action-button"><img src="../static/assets/img/shopping_bag.png" alt="Shopping Bag"></a>
       </div>
   </div><br>
-
+  <div class="navbar-divider"></div> <!-- Trennlinie einfügen -->
 </nav>
+
+<!-- Zweite Navbar -->
+<nav class="second-navbar">
+    <a href="#">Übersicht</a>
+    <a></a>
+    <a></a>
+    <a href="#">Bestellungen</a>
+    <a></a>
+    <a></a>
+    <a href="#">Kontodaten</a>
+    <a></a>
+    <a></a>
+    <a href="#">Rechnungen</a>
+</nav>
+
 {% block content %}
 {% endblock %}
 </body>
