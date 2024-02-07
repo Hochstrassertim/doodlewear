@@ -1,55 +1,55 @@
  body {
-font-family: Arial, sans-serif;
-        background-color: black;
-        }
+     font-family: Arial, sans-serif;
+     background-color: black;
+ }
 
-        section {
-            margin: 20px;
-        }
+ section {
+     margin: 20px;
+ }
 
-        table {
-            width: 100%;
+ table {
+     width: 100%;
             border-collapse: collapse;
-        }
+ }
 
-        table,
-        th,
-        td {
-            border: 1px solid black;
-        }
+ table,
+ th,
+ td {
+     border: 1px solid black;
+ }
 
-        dialog {
-            border: 2px solid #004d99;
-            padding: 20px;
-        }
+ dialog {
+     border: 2px solid #004d99;
+     padding: 20px;
+ }
 
-        .ueberschrift {
-            color: white;
-            font-size: 100px;
-            font-family: serif;
-        }
+ .ueberschrift {
+     color: white;
+     font-size: 100px;
+     font-family: serif;
+ }
 
 
-        .banner {
-            margin-left: auto;
-            margin-right: auto;
-            background-size: cover;
-            background-attachment: scroll;
-            background-blend-mode: multiply;
-            text-align: center;
-            padding-top: 9.7%;
-            background: url(homepagebil.jpg);
-        }
+ .banner {
+     margin-left: auto;
+     margin-right: auto;
+     background-size: cover;
+     background-attachment: scroll;
+     background-blend-mode: multiply;
+     text-align: center;
+     padding-top: 9.7%;
+     background: url("/static/assets/img/homepagebil.jpg");
+ }
 
-        #bgtext {
-            margin-right: auto;
-            margin-top: 250px;
-            text-shadow: 3px 3px rgba(0, 0, 0, .50);
-            text-align: center;
-            font-size: 50px;
+ #bgtext {
+     margin-right: auto;
+     margin-top: 250px;
+     text-shadow: 3px 3px rgba(0, 0, 0, .50);
+     text-align: center;
+     font-size: 50px;
 
-          color: white;
-        }
+     color: white;
+ }
 
          .banner {
             width: auto;
@@ -59,7 +59,7 @@ font-family: Arial, sans-serif;
             height: 70vmin;
             min-height: 50em;
             background: linear-gradient(#000000, transparent, #000000),
-                url(homepagebil.jpg) no-repeat center center/contain scroll;
+                url("/static/assets/img/homepagebil.jpg") no-repeat center center/contain scroll;
             background-blend-mode: color;
             text-align: center;
           width: 100%;
@@ -75,7 +75,7 @@ font-family: Arial, sans-serif;
             text-align: center;
             font-size: 100px;
             color: white;
-            contain: fixed;
+            /*contain: fixed;*/
 
         }
         table tr th{
@@ -84,7 +84,7 @@ font-family: Arial, sans-serif;
         }
 
         table th:not(:last-child) {
-            padding-right: auto;
+           /* padding-right: auto;*/
         }
         table {
             margin-left: 3%;
@@ -115,7 +115,7 @@ font-family: Arial, sans-serif;
             height: 100%;
             width: 75%;
             opacity: 0;
-            transform: .5 ease;
+         /*   transform: .5 ease;*/
             background-color: #4747478e;
         }
         .container:hover .overlay{
@@ -130,3 +130,9 @@ font-family: Arial, sans-serif;
             transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
         }
+
+
+        .banner {
+    /* ... */
+    mask: linear-gradient(to top, transparent 2%, rgb(0, 0, 0) 100%);
+}
