@@ -23,10 +23,15 @@ def about():
     app.logger.info("Displaying about us page")
     return render_template("about.html")
 
+@app.route('/story')
+def story():
+    app.logger.info("Rendering story page")
+    return render_template("story.html")
+
 @app.route('/login')
 def login_home():
     app.logger.info("Rendering login form")
-    return render_template("index.html")
+    return render_template("profile/index.html")
 
 @app.route('/login_submit', methods=['POST'])
 def login_submit():
