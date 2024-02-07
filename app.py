@@ -26,7 +26,7 @@ def about():
 @app.route('/login')
 def login_home():
     app.logger.info("Rendering login form")
-    return render_template("index.html")
+    return render_template("profile/index.html")
 
 @app.route('/login_submit', methods=['POST'])
 def login_submit():
