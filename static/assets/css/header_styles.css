@@ -15,6 +15,7 @@ nav {
   height: 75px;
   background: #2d2b2b;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Set a higher z-index value */
 }
 
 nav .navbar {
