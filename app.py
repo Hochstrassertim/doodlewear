@@ -5,7 +5,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():  # put application's code here
-    return 'Hello World!'
+    app.logger.info("Rendering home page")
+    return render_template("index.html")
 
 
 @app.route('/about')
