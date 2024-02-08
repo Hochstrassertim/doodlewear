@@ -34,11 +34,10 @@
      margin-left: auto;
      margin-right: auto;
      background-size: cover;
-     background-attachment: scroll;
      background-blend-mode: multiply;
      text-align: center;
      padding-top: 9.7%;
-     background: url("/static/assets/img/homepagebil.jpg");
+     background: url("../img/homepagebil.jpg") scroll;
  }
 
  #bgtext {
@@ -47,6 +46,7 @@
      text-shadow: 3px 3px rgba(0, 0, 0, .50);
      text-align: center;
      font-size: 50px;
+     font-family: Calibri;
 
      color: white;
  }
@@ -57,7 +57,7 @@
             margin-left: auto;
             margin-right: auto;
             height: 70vmin;
-            min-height: 50em;
+            min-height: 60em;
             background: linear-gradient(#000000, transparent, #000000),
                 url("/static/assets/img/homepagebil.jpg") no-repeat center center/contain scroll;
             background-blend-mode: color;
@@ -73,7 +73,7 @@
             margin-top: 250px;
             text-shadow: 3px 3px rgba(0, 0, 0, .50);
             text-align: center;
-            font-size: 100px;
+            font-size: 80px;
             color: white;
             /*contain: fixed;*/
 
@@ -110,10 +110,10 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            left: 0;
+            left: 80px;
             right: 0;
             height: 100%;
-            width: 75%;
+            width: 65%;
             opacity: 0;
          /*   transform: .5 ease;*/
             background-color: #4747478e;

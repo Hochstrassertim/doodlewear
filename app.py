@@ -13,25 +13,37 @@ app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'pythonlogin'
 mysql = MySQL(app)
 
+
 @app.route('/')
 def hello_world():
     app.logger.info("Rendering home page")
+    print('Hello')
     return render_template("index.html")
+
 
 @app.route('/about')
 def about():
     app.logger.info("Displaying about us page")
     return render_template("about.html")
 
+
+@app.route('/shop')
+def shop():
+    app.logger.info("Displaying shop page")
+    return render_template("shop.html")
+
+
 @app.route('/story')
 def story():
     app.logger.info("Rendering story page")
     return render_template("story.html")
 
+
 @app.route('/login')
 def login_home():
     app.logger.info("Rendering login form")
     return render_template("profile/index.html")
+
 
 @app.route('/login_submit', methods=['POST'])
 def login_submit():
@@ -61,6 +73,7 @@ def login_submit():
         return 'Data received!'
     else:
         return redirect(url_for('login_home'))
+
 
 if __name__ == '__main__':
     app.run()

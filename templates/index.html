@@ -1,22 +1,19 @@
-{% extends 'header.html' %}
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="/static/assets/css/home_style.css">
-    <title>Doodleclo.</title>
-</head>
+{% extends 'base.html' %}
 
-<body>
-<div class='banner'>
-    <strong id="bgtext">MORE THAN CLOTHING</strong>
-</div>
+{% block title %}Index{% endblock %}
 
-<table>
+{% block content %}
+
+    <div class='banner'>
+        <strong id="bgtext">MORE THAN CLOTHING</strong>
+    </div>
+
     <table>
         <tr class="first-row-table">
             <th>
                 <div class="container">
-                    <img src="/static/assets/img/farbe.jpg" alt="Segeln in Sizilien/Sardinien (Italien)" class="image">
+                    <img src="../static/assets/img/farbe.jpg" alt="Segeln in Sizilien/Sardinien (Italien)"
+                         class="image">
                     <a href="../Beitraege/Italien.html">
 
                         <div class="overlay">
@@ -28,7 +25,7 @@
             </th>
             <th>
                 <div class="container">
-                    <img src="../farbe.jpg" alt="Segellager Riva del Garda (Italien)" class="image">
+                    <img src="../static/assets/img/farbe.jpg" alt="Segellager Riva del Garda (Italien)" class="image">
 
                     <a href="../Beitraege/RivadelGarda.html">
                         <div class="overlay">
@@ -39,7 +36,7 @@
             </th>
             <th>
                 <div class="container">
-                    <img src="../farbe.jpg" alt="Finnland" class="image">
+                    <img src="../static/assets/img/farbe.jpg" alt="Finnland" class="image">
 
                     <a href="../Beitraege/Finnland.html">
                         <div class="overlay">
@@ -50,7 +47,7 @@
             </th>
             <th>
                 <div class="container">
-                    <img src="../farbe.jpg" alt="England" class="image">
+                    <img src="../static/assets/img/farbe.jpg" alt="England" class="image">
 
                     <a href="../Beitraege/England.html">
                         <div class="overlay">
@@ -63,7 +60,7 @@
         <tr>
             <th>
                 <div class="container">
-                    <img src="../farbe.jpg" alt="England" class="image">
+                    <img src="../static/assets/img/farbe.jpg" alt="England" class="image">
 
                     <a href="../Beitraege/England.html">
                         <div class="overlay">
@@ -74,7 +71,7 @@
             </th>
             <th>
                 <div class="container">
-                    <img src="../farbe.jpg" alt="England" class="image">
+                    <img src="../static/assets/img/farbe.jpg" alt="England" class="image">
 
                     <a href="../Beitraege/England.html">
                         <div class="overlay">
@@ -85,7 +82,7 @@
             </th>
             <th>
                 <div class="container">
-                    <img src="../farbe.jpg" alt="Tessin" class="image">
+                    <img src="../static/assets/img/farbe.jpg" alt="Tessin" class="image">
 
                     <a href="../Beitraege/Tessin.html">
                         <div class="overlay">
@@ -96,7 +93,7 @@
             </th>
             <th>
                 <div class="container">
-                    <img src="../farbe.jpg" alt="Serfaus (Österreich)" class="image">
+                    <img src="../static/assets/img/farbe.jpg" alt="Serfaus (Österreich)" class="image">
 
                     <a href="../Beitraege/Serfaus.html">
                         <div class="overlay">
@@ -109,7 +106,7 @@
         <tr>
             <th>
                 <div class="container">
-                    <img src="../farbe.jpg" alt="England" class="image">
+                    <img src="../static/assets/img/farbe.jpg" alt="England" class="image">
 
                     <a href="../Beitraege/England.html">
                         <div class="overlay">
@@ -120,7 +117,7 @@
             </th>
             <th>
                 <div class="container">
-                    <img src="../farbe.jpg" alt="Tessin" class="image">
+                    <img src="../static/assets/img/farbe.jpg" alt="Tessin" class="image">
 
                     <a href="../static/assets/img/Strichman_logo.JPG">
                         <div class="overlay">
@@ -131,7 +128,7 @@
             </th>
             <th>
                 <div class="container">
-                    <img src="../farbe.jpg" alt="Serfaus (Österreich)" class="image">
+                    <img src="../static/assets/img/farbe.jpg" alt="Serfaus (Österreich)" class="image">
 
                     <a href="../Beitraege/Serfaus.html">
                         <div class="overlay">
@@ -142,7 +139,5 @@
             </th>
         </tr>
     </table>
-</table>
-</body>
-</html>
+{% endblock %}
 
