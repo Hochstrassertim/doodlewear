@@ -1,5 +1,5 @@
 dbname=doodlewear
 user=postgres
-password=Brachi 15
+password=passwd
 host=localhost
 port=5432
