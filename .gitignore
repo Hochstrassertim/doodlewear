@@ -1,4 +1,4 @@
 venv/
 .idea/
 flask_session/
-db_config.txt
+/db_config.txt
