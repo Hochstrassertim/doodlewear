@@ -10,7 +10,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-def read_db_config(filename='assets/db_config.txt'):
+def read_db_config(filename='db_config.txt'):
     with open(filename, 'r') as file:
         lines = file.readlines()
         config = {line.split('=')[0].strip(): line.split('=')[1].strip() for line in lines}
