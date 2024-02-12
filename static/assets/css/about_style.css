@@ -9,13 +9,6 @@ body {
             color: #fff;
         }
 
-        header {
-            background-color: #111;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-        }
-
         .container {
             display: flex;
             flex-direction: column;
