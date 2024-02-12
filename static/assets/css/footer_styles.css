@@ -4,11 +4,13 @@ body {
 }
 
 .footer {
+    height: 5%;
     background: #2d2b2b;
-    padding: 30px 0;
+    padding: 10px 0;
     font-family: 'Poppins', sans-serif;
     text-align: center;
     position: relative;
+    margin-top: 2%;
 }
 
 .footer .row {
@@ -26,11 +28,12 @@ body {
 }
 
 .footer .row a:hover {
-    color: #fff;
+    color: grey;
 }
 
 .footer .row ul {
     width: 100%;
+    margin-bottom: -10000px;
 }
 
 .footer .row ul li {
@@ -40,7 +43,14 @@ body {
 
 .footer .row a i {
     font-size: 2em;
-    margin: 0% 1%;
+    margin: -1% 1%;
+}
+.icons {
+
+}
+.mail {
+    margin-top: -1%;
+    text-align: center;
 }
 
 @media (max-width: 720px) {

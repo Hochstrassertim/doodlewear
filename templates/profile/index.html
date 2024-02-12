@@ -1,22 +1,21 @@
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}Login{% endblock %}
 <head>
     <link rel="stylesheet" href="/static/assets/css/login.css">
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="/static/assets/js/login.js"></script>
 </head>
-<body>
-{% extends 'base.html' %}
+
 {% block content %}
 <div id="login_form">
 
-        <div id="form_title">
-            <h1 id="login_h1">Login/Register</h1>
-            <button id="login_button" onclick="hideFields()">Already a member? Login</button>
-            <button id="register_button" onclick="showAllFields()">Not a member yet? Register</button>
-        </div>
+    <div id="form_title">
+        <h1 id="login_h1">Login/Register</h1>
+        <button id="login_button" onclick="hideFields()">Already a member? Login</button>
+        <button id="register_button" onclick="showAllFields()">Not a member yet? Register</button>
+    </div>
     <form action="{{ url_for('login') }}" method="post">
         <input type="text" placeholder="username" id="username" name="username">
         <input type="text" placeholder="First name" id="first_name" name="first_name">
@@ -33,5 +32,3 @@
     </form>
 </div>
 {% endblock %}
-</body>
-</html>
