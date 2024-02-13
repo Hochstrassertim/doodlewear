@@ -91,9 +91,6 @@ def logout():
     session["name"] = None
     return redirect("/login")
 
-@app.route('/shirts/italy')
-def italy():
-    return render_template('shirts/italien.html')
 @app.route('/shirts/productpage', methods=['GET'])
 def productpage():
     return render_template('shirts/productpage.html')
