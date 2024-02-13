@@ -1,4 +1,5 @@
 import psycopg2
+import socket
 from flask import Flask, request, render_template, redirect, session
 from flask_session import Session
 
@@ -11,7 +12,8 @@ Session(app)
 
 def connect_to_database():
     # Connection string for PostgreSQL
-    connection_string = "postgres://postgresql:Mre24ol0TQsfbyMY7AmiHxFaiMW5qTZ2@dpg-cn52h90l6cac73a8vvu0-a/doodlewear"
+    #connection_string = "postgres://postgresql:Mre24ol0TQsfbyMY7AmiHxFaiMW5qTZ2@dpg-cn52h90l6cac73a8vvu0-a/doodlewear"
+    connection_string = "dbname=doodlewear user=postgresql password=Mre24ol0TQsfbyMY7AmiHxFaiMW5qTZ2 host=dpg-cn52h90l6cac73a8vvu0-a.frankfurt-postgres.render.com port=5432"
 
     # Establish a connection to the PostgreSQL database
     conn = psycopg2.connect(connection_string)
@@ -72,7 +74,6 @@ def login():
 
     return render_template("profile/index.html")
 
-
 @app.route('/login_submit', methods=['POST'])
 def login_submit():
     if request.method == 'POST':
@@ -91,9 +92,15 @@ def logout():
     session["name"] = None
     return redirect("/login")
 
+# Route for printing all users
+
 @app.route('/shirts/italy')
 def italy():
     return render_template('shirts/italien.html')
+
+@app.route('/hostname')
+def hostname():
+    return socket.gethostname()
 
 if __name__ == '__main__':
     app.run(debug=True)
