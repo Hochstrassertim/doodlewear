@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+.banner {
+    text-align: center;
+    padding-top: 50%; /* Passen Sie diesen Wert nach Bedarf an */
+    background: linear-gradient(rgb(0, 0, 0), transparent, rgb(0, 0, 0)), url(/static/assets/img/homepagebil.jpg) center center / cover no-repeat scroll;
+    min-height: 50vh; /* 50% der Bildschirmhöhe */
+}
+
+#bgtext {
+    position: relative;
+    bottom: 500px;
+    margin-right: auto;
+    margin-top: 650%;
+    text-shadow: 3px 3px rgba(0, 0, 0, .50);
+    text-align: center;
+    font-size: 500%;
+    color: white;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-left: 0;
+    margin-right: 50%;
+    margin-top: 2%;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+
+
+table tr th{
+    padding-bottom: 50px;
+    padding-right: -10px;
+}
+
+table th:not(:last-child) {
+    /* padding-right: auto;*/
+}
+
+table tr th img{
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.container{
+    position: relative;
+    width: 100%;
+}
+.image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-shadow: rgb(45, 43, 43) 100px 100px 100px 0px;
+}
+.overlay {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 30px;
+    right: 0px;
+    height: 100%;
+    width: 81%;
+    opacity: 0;
+    background-color: rgba(71, 71, 71, 0.557);
+}
+.container:hover .overlay{
+    opacity: 1;
+}
+.text{
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}

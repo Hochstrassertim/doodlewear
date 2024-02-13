@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: Nunito, sans-serif;
 }
 header {
   background-color:#2d2b2b ;
@@ -110,7 +110,6 @@ nav .navbar .menu {
   color: #2d2b2b;
   background-color: #fff;
   padding: 5px;
-  border: 1px solid #fff;
   transition: all 0.3s ease-in-out;
   border-radius: 5px;
 }

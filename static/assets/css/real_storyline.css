@@ -1,31 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-/* Reset and base styles */
+
 * {
+    font-family: Nunito, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #121212;
+    background: #222;
     color: #E0E0E0;
     line-height: 1.6;
 }
-
 
 main {
     padding: 2rem;
 }
 
 .story {
-    background-color: #262626;
-    margin: 2rem auto;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2em auto;
+    width: 100%;
     max-width: 800px;
+    padding: 1em;
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
 }
 
 .story p {
@@ -34,26 +37,21 @@ main {
 }
 
 .story1 {
-	background-color: #262626;
-    margin: 2rem auto;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2em auto;
+    width: 100%;
     max-width: 800px;
-	font-size: 1.75rem;
-    margin-bottom: 1rem;
+    padding: 1em;
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 1.75rem;
 
-
-
-
-
-
-
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .story {
-        width: 90%;
+    @media (max-width: 768px) {
+        .story {
+            width: 90%;
+        }
     }
-}
 }
