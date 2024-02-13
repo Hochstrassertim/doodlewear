@@ -12,8 +12,11 @@ Session(app)
 
 def connect_to_database():
     # Connection string for PostgreSQL
-    #connection_string = "postgres://postgresql:Mre24ol0TQsfbyMY7AmiHxFaiMW5qTZ2@dpg-cn52h90l6cac73a8vvu0-a/doodlewear"
-    connection_string = "dbname=doodlewear user=postgresql password=Mre24ol0TQsfbyMY7AmiHxFaiMW5qTZ2 host=dpg-cn52h90l6cac73a8vvu0-a.frankfurt-postgres.render.com port=5432"
+
+    if socket.gethostname() == "srv-cn5lbkgl5elc73e7hus0-hibernate-689d6995f9-v54tm":
+        connection_string = "postgres://postgresql:Mre24ol0TQsfbyMY7AmiHxFaiMW5qTZ2@dpg-cn52h90l6cac73a8vvu0-a/doodlewear"
+    else:
+        connection_string = "dbname=doodlewear user=postgresql password=Mre24ol0TQsfbyMY7AmiHxFaiMW5qTZ2 host=dpg-cn52h90l6cac73a8vvu0-a.frankfurt-postgres.render.com port=5432"
 
     # Establish a connection to the PostgreSQL database
     conn = psycopg2.connect(connection_string)
