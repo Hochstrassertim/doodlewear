@@ -4,7 +4,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Nunito, sans-serif;
 }
 header {
   background-color:#2d2b2b ;
@@ -12,6 +11,7 @@ header {
             padding: 1em;
             text-align: center;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    font-family: Nunito, sans-serif;
 }
 nav {
   position: relative;
