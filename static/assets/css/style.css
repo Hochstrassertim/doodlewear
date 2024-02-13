@@ -1,6 +1,8 @@
 body {
-     font-family: Arial, sans-serif;
-     background-color: black;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 table {
@@ -13,13 +15,6 @@ th,
 td {
     border: 1px solid black;
 }
-
-.ueberschrift {
-     color: white;
-     font-size: 100px;
-     font-family: serif;
-}
-
 
 .banner {
     margin-top: -10px;
@@ -38,22 +33,22 @@ td {
     mask-origin: border-box;
     mask-clip: border-box;
     mask-composite: add;
-    mask-mode: match-source;
+    mask-mode: initial;
     background: linear-gradient(rgb(0, 0, 0), transparent, rgb(0, 0, 0)), url(/static/assets/img/homepagebil.jpg) center center / contain no-repeat scroll;
 }
 
 #bgtext {
     margin-right: auto;
-    margin-top: 250px;
+    margin-top: 650%;
     text-shadow: 3px 3px rgba(0, 0, 0, .50);
     text-align: center;
-    font-size: 50px;
+    font-size: 500%;
     color: white;
 }
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-left: 3%;
+    margin-left: 0;
     margin-right: 50%;
     margin-top: 2%;
 }
