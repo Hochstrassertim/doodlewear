@@ -1,7 +1,6 @@
+import psycopg2
 from flask import Flask, request, render_template, redirect, session
 from flask_session import Session
-import psycopg2
-from psycopg2 import sql
 
 app = Flask(__name__)
 
@@ -10,33 +9,26 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-def read_db_config(filename='db_config.txt'):
-    with open(filename, 'r') as file:
-        lines = file.readlines()
-        config = {line.split('=')[0].strip(): line.split('=')[1].strip() for line in lines}
-    return config
-
 def connect_to_database():
-    db_config = read_db_config()
-    conn = psycopg2.connect(
-        dbname=db_config['dbname'],
-        user=db_config['user'],
-        password=db_config['password'],
-        host=db_config['host'],
-        port=db_config['port']
-    )
+    # Connection string for PostgreSQL
+    connection_string = "postgres://postgresql:Mre24ol0TQsfbyMY7AmiHxFaiMW5qTZ2@dpg-cn52h90l6cac73a8vvu0-a/doodlewear"
+
+    # Establish a connection to the PostgreSQL database
+    conn = psycopg2.connect(connection_string)
     return conn
 
 def create_cursor(conn):
     return conn.cursor()
 
 def get_user_info(cursor, username):
-    query = sql.SQL("SELECT * FROM user WHERE name = {}")
-    cursor.execute(query.format(sql.Literal(username)))
-    result = cursor.fetchone()
-    if result:
-        columns = ['username', 'password', 'role']
-        return dict(zip(columns, result))
+    query = "SELECT * FROM users WHERE username ILIKE %s"
+    cursor.execute(query, (username,))
+
+    results = cursor.fetchall()
+
+    if results:
+        columns = ['id', 'username', 'password', 'birth_date', 'email', 'phone_number', 'street', 'house_number', 'city', 'postal_code', 'country', 'role']
+        return [dict(zip(columns, row)) for row in results]
     else:
         return None
 
@@ -64,20 +56,22 @@ def login():
 
         connection = connect_to_database()
         cursor = create_cursor(connection)
-        user_info = get_user_info(cursor, username)
+        user_info_list = get_user_info(cursor, username)
         cursor.close()
         connection.close()
+        if user_info_list:
+            for user_info in user_info_list:
+                print("User Info:", user_info)  # Print user information for debugging
+                if password == user_info['password']:
+                    session["name"] = username
+                    return redirect("/profile")
 
-        if user_info:
-            if password == user_info['password']:
-                session["name"] = username
-                return redirect("/profile")
-            else:
-                return render_template("profile/index.html", error="Invalid password")
+            return render_template("profile/index.html", error="Invalid password")
 
         return render_template("profile/index.html", error="Invalid username")
 
     return render_template("profile/index.html")
+
 
 @app.route('/login_submit', methods=['POST'])
 def login_submit():
