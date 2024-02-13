@@ -17,15 +17,28 @@ td {
 }
 
 .banner {
+    font-family: Arial, sans-serif;
+    margin-top: -10px;
     text-align: center;
-    padding-top: 50%; /* Passen Sie diesen Wert nach Bedarf an */
-    background: linear-gradient(rgb(0, 0, 0), transparent, rgb(0, 0, 0)), url(/static/assets/img/homepagebil.jpg) center center / cover no-repeat scroll;
-    min-height: 50vh; /* 50% der Bildschirmhöhe */
+    padding-top: 9.7%;
+    min-height: 60em;
+    background-blend-mode: color;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    mask-image: linear-gradient(to top, transparent 2%, rgb(0, 0, 0) 100%);
+    -webkit-mask-position-x: 0%;
+    -webkit-mask-position-y: 0%;
+    mask-size: auto;
+    mask-repeat: repeat;
+    mask-origin: border-box;
+    mask-clip: border-box;
+    mask-composite: add;
+    mask-mode: initial;
+    background: linear-gradient(rgb(0, 0, 0), transparent, rgb(0, 0, 0)), url(/static/assets/img/homepagebil.jpg) center center / contain no-repeat scroll;
 }
 
 #bgtext {
-    position: relative;
-    bottom: 500px;
     margin-right: auto;
     margin-top: 650%;
     text-shadow: 3px 3px rgba(0, 0, 0, .50);
