@@ -2,13 +2,12 @@ body, html {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
 }
 
 .product-container {
     display: flex;
     padding: 20px;
-    background-color: white;
+    background-color: rgb(45, 43, 43);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin: 20px;
 }
@@ -30,3 +29,4 @@ body, html {
     margin: 5px;
     border: 1px solid #ccc;
 }
+
