@@ -14,8 +14,6 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-server_hostname = "srv-cn5lbkgl5elc73e7hus0-hibernate-689d6995f9-v54tm"
-
 def connect_to_database():
     # Connection string for PostgreSQL
 
@@ -150,7 +148,6 @@ def register():
 
     return render_template("profile/index.html")
 
-
 @app.route("/profile")
 def profile():
     if not session.get("name"):
@@ -162,29 +159,9 @@ def logout():
     session["name"] = None
     return redirect("/login")
 
-# Route for printing all users
-
-@app.route('/shirts/italy')
-def italy():
-    return render_template('shirts/italien.html')
-
-@app.route('/hostname')
-def hostname():
-    return socket.gethostname()
-
-@app.route('/test_register')
-def test_register():
-    try:
-        connection = connect_to_database()
-        cursor = create_cursor(connection)
-        register_user(cursor, 'tim', 'tim', 'hochstrasser', 'email', 'phone', 'street', 5, 'city', 'postal_code','switzerland', 'password', '2000-01-01')
-        connection.commit()  # Commit changes to the database
-        return "Test"
-    except Exception as e:
-        return f"Error: {str(e)}"
-    finally:
-        cursor.close()
-        connection.close()
+@app.route('/shirts/productpage', methods=['GET'])
+def productpage():
+    return render_template('shirts/productpage.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
