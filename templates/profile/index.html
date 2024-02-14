@@ -1,33 +1,43 @@
 {% extends 'base.html' %}
 
 {% block title %}Login{% endblock %}
-<head>
-    <link rel="stylesheet" href="/static/assets/css/login.css">
-    <meta charset="UTF-8">
-    <script src="/static/assets/js/login.js"></script>
-</head>
 
 {% block content %}
-<div id="login_form">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../static/assets/css/about_style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div id="form_title">
-        <h1 id="login_h1">Login/Register</h1>
-        <button id="login_button" onclick="hideFields()">Already a member? Login</button>
-        <button id="register_button" onclick="showAllFields()">Not a member yet? Register</button>
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <div class="form-box">
+        <div class="button-box">
+            <div id="btn"></div>
+            <button type="button" class="toggle-btn" onclick="login()">Login</button>
+            <button type="button" class="toggle-btn" onclick="register()">Register</button>
+        </div>
+        <form id="login" class="input-group" action="/login" method="post">
+            <div class="input-fields">
+                <input type="text" placeholder="username" id="username" name="username">
+                <input type="password" placeholder="Password" id="password" name="password">
+                <input type="submit" class="submit-btn" value="Login" id="login">
+            </div>
+        </form>
+        <form id="register" class="input-group" action="/register" method="post">
+            <input type="text" placeholder="username" id="username" name="username">
+            <input type="text" placeholder="First name" id="first_name" name="first_name">
+            <input type="text" placeholder="Last name" id="last_name" name="last_name">
+            <input type="email" placeholder="Email" id="email" name="email">
+            <input type="text" placeholder="Phone number" id="phone" name="phone">
+            <input type="text" placeholder="Street and house number" id="street" name="street">
+            <input type="text" placeholder="City" id="city" name="city">
+            <input type="text" placeholder="Postal code" id="postal_code" name="postal_code">
+            <input type="password" placeholder="Password" id="password" name="password">
+            <input type="date" placeholder="Date of birth" id="birth_date" name="birth_date">
+            <input type="submit" class="submit-btn" value="Register" id="register">
+        </form>
     </div>
-    <form action="{{ url_for('login') }}" method="post" id="form">
-        <input type="text" placeholder="username" id="username" name="username">
-        <input type="text" placeholder="First name" id="first_name" name="first_name">
-        <input type="text" placeholder="Last name" id="last_name" name="last_name">
-        <input type="email" placeholder="Email" id="email" name="email">
-        <input type="text" placeholder="Phone number" id="phone" name="phone">
-        <input type="text" placeholder="Street and house number" id="street" name="street">
-        <input type="text" placeholder="City" id="city" name="city">
-        <input type="text" placeholder="Postal code" id="postal_code" name="postal_code">
-        <input type="password" placeholder="Password" id="password" name="password">
-        <input type="date" placeholder="Date of birth" id="birth_date" name="birth_date">
-        <input type="submit" value="Register" id="register">
-        <input type="submit" value="Login" id="login">
-    </form>
-</div>
+    <script src="/static/assets/js/login.js"></script>
 {% endblock %}
+

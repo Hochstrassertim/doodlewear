@@ -1,56 +1,102 @@
-form {
-    margin-left: 10px;
-    margin-right: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 100%;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-input {
-    margin-bottom: 5px;
-    margin-left: 0%;
-    height: 40px;
-    width: 100%;
-    display: inline;
+body {
+    background: #222;
+    font-family: Nunito, sans-serif;
+    color: #fff;
 }
-#login_form {
-    width: 30%;
-    height: 650px;
-    margin-top: 5.5%;
-    margin-left: 35%;
-    border-radius: 25px;
-    background-color: #ccc;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-#form_title {
-    padding-top: 5px;
-    width: 100%;
-    height: 100px;
+
+.form-box {
+    width: 450px;
+    height: 550px;
+    position: relative;
+    margin: 8.5% auto;
     background-color: #333;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 5px;
+    overflow: hidden;
 }
-#login_button, #register_button {
+
+.button-box {
+    width: 220px;
+    margin: 35px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px rgba(0, 0, 0, 0.096);
+    border-radius: 30px;
+}
+
+.toggle-btn {
+    padding: 10px 30px;
     cursor: pointer;
-    color: white;
-    background-color: #333;
-    text-decoration: none;
+    background: transparent;
+    border: 0;
     outline: none;
-    border: none;
+    position: relative;
+}
+
+#btn {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background: #999;
+    border-radius: 30px;
+    transition: .5s;
+}
+
+.input-group {
+    top: 30%;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+    margin-left: 7.5%;
+}
+
+#username, #password, #first_name, #last_name, #email, #phone, #street, #city, #postal_code, #birth_date {
+    margin-left: 19%;
+}
+
+.input-feld {
+    width: 100px;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    background: transparent;
+    position: relative;
+}
+
+.submit-btn {
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
     display: block;
+    margin: auto;
+    background: #999;
+    border: 0;
+    outline: none;
+    border-radius: 30px;
 }
-#birth_date, #first_name, #last_name, #street, #city, #postal_code, #login_button, #register, #email, #phone {
-    display: none;
+
+span {
+    color: #ccc;
+    font-size: 12px;
+    bottom: 68px;
+    position: absolute;
 }
-#login_h1 {
-font-family: Nunito, sans-serif;
-    font-size: 25px;
-    color: white;
-    margin-top: 10px;
+
+#login {
+    left: 50px;
+}
+
+#register {
+    left: 450px;
 }

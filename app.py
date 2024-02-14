@@ -101,12 +101,12 @@ def login():
                 if password == user_info['password']:
                     session["name"] = username
                     return redirect("/profile")
-
-            return render_template("profile/index.html", error="Invalid password")
-
-        return render_template("profile/index.html", error="Invalid username")
-
-    return render_template("profile/index.html")
+            response_data = {}
+            return render_template("profile/index.html", response_data=response_data)
+        response_data = {}
+        return render_template("profile/index.html", response_data=response_data)
+    response_data = {}
+    return render_template("profile/index.html", response_data=response_data)
 
 @app.route("/register", methods=["POST", "GET"])
 def register():
@@ -141,7 +141,6 @@ def register():
             session["name"] = username
 
             response_data = {'success': True, 'message': 'Registration successful. You will be redirected in a few seconds.'}
-            time.sleep(3)
             return render_template("profile/login_redirect.html", response_data=response_data)
 
         except Exception as e:
@@ -153,7 +152,23 @@ def register():
 def profile():
     if not session.get("name"):
         return redirect("/login")
-    return render_template('profile/profile.html')
+    response_data = {'username': session["name"]}
+    return render_template('profile/profile.html', response_data=response_data)
+
+@app.route("/profile/settings")
+def settings():
+    if not session.get("name"):
+        return redirect("/login")
+    response_data = {'username': session["name"]}
+    return render_template('profile/settings.html', response_data=response_data)
+
+@app.route("/profile/settings/change_username", methods=['GET', 'POST'])
+def change_username():
+    if not session.get("name"):
+        return redirect("/login")
+    response_data = {'username': session["name"]}
+    return redirect("/login")
+    #return render_template('profile/settings.html', response_data=response_data)
 
 @app.route("/logout")
 def logout():
