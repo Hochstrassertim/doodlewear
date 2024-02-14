@@ -25,15 +25,17 @@ body {
 
 .grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Für vier gleich breite Spalten */
-    grid-auto-rows: minmax(min-content, max-content); /* Anpassen der Zeilenhöhe */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 0.8fr 0.8fr;
     gap: 40px 30px;
-    max-width: 120%;
-    max-legend: 120%;
+    grid-auto-flow: row;
+    max-width: 100%;
 }
+
 
 .container {
     position: relative;
+    grid-template-rows: 0.8fr 0.8fr;
     width: 100%;
     height: auto;
 }
@@ -47,8 +49,8 @@ body {
 .overlay {
     position: absolute;
     top: 0;
-    left: 10%;
-    right: 10%;
+    left: 30px;
+    right: 30px;
     bottom: 0;
     opacity: 0;
     transition: .5s ease;
@@ -85,3 +87,4 @@ body {
         font-size: 5vw;
     }
 }
+
