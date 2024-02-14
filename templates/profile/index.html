@@ -1,23 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %}Login{% endblock %}
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="../../static/assets/css/productpage_style.css">
-    <link rel="website icon" type="jpg" href="/static/assets/img/Strichman_logo.JPG">
-    <link rel="stylesheet" href="/static/assets/css/login.css">
-    <link rel="stylesheet" href="../../static/assets/css/real_storyline.css">
-    <link rel="stylesheet" href="../../static/assets/css/about_style.css">
-    <link rel="stylesheet" href="../../static/assets/css/style.css">
-    <link rel="stylesheet" href="../../static/assets/css/header_styles.css">
-    <link rel="stylesheet" href="../../static/assets/css/footer_styles.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
 
 {% block content %}
-    <div class="hero">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../static/assets/css/about_style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
         <div class="form-box">
             <div class="button-box">
                 <div id="btn"></div>
@@ -43,7 +36,6 @@
                 <input type="submit" class="submit-btn" value="Register" id="register">
             </form>
         </div>
-    </div>
     <script src="/static/assets/js/login.js"></script>
 {% endblock %}
 

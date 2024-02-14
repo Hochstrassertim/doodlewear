@@ -1,203 +1,97 @@
-
-​
-You
-​
-*{
-
+* {
     margin: 0;
-
     padding: 0;
-
 }
 
-.hero{
-
-    height: 100%;
-
-    width: 100%;
-
-    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)/*,url()*/);
-
-    background-position: center;
-
-    background-size: cover;
-
-    position: relative;
-
+body {
+    background: #222;
+    font-family: Nunito, sans-serif;
+    color: #fff;
 }
 
-.form-box{
-
-    width: 380px;
-
-    height: 480px;
-
+.form-box {
+    width: 450px;
+    height: 550px;
     position: relative;
-
-    margin: 6% auto;
-
-    background-color: white;
-
+    margin: 8.5% auto;
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
     padding: 5px;
-
     overflow: hidden;
-
 }
 
-.button-box{
-
+.button-box {
     width: 220px;
-
     margin: 35px auto;
-
     position: relative;
-
     box-shadow: 0 0 20px 9px rgba(0, 0, 0, 0.096);
-
     border-radius: 30px;
-
 }
 
-.toggle-btn{
-
+.toggle-btn {
     padding: 10px 30px;
-
     cursor: pointer;
-
     background: transparent;
-
     border: 0;
-
     outline: none;
-
     position: relative;
-
 }
 
-#btn{
-
+#btn {
     top: 0;
-
     left: 0;
-
     position: absolute;
-
     width: 110px;
-
     height: 100%;
-
-    background: linear-gradient(to right, #214B61, #03A4A7);
-
+    background: #999;
     border-radius: 30px;
-
     transition: .5s;
-
 }
 
-.socail-icons{
-
-    margin: 30px auto;
-
-    text-align: center;
-
-}
-
-.socail-icons img{
-
-    width: 30px;
-
-    margin: 0 12px;
-
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.096);
-
-    cursor: pointer;
-
-    border-radius: 50%;
-
-}
-
-.input-group{
-
-    top: 180px;
-
+.input-group {
+    top: 30%;
     position: absolute;
-
     width: 280px;
-
     transition: .5s;
-
 }
 
-.input-feld{
-
+.input-feld {
     width: 100%;
-
     padding: 10px 0;
-
     margin: 5px 0;
-
     border-left: 0;
-
     border-top: 0;
-
     border-right: 0;
-
-    border-bottom: 1px solid #999;
-
+    border-bottom: 1px solid #ccc;
     outline: none;
-
     background: transparent;
-
+    position: relative;
 }
 
-.submit-btn{
-
+.submit-btn {
     width: 85%;
-
     padding: 10px 30px;
-
     cursor: pointer;
-
     display: block;
-
     margin: auto;
-
-    background: linear-gradient(to right, #214B61, #03A4A7);
-
+    background: #999;
     border: 0;
-
     outline: none;
-
     border-radius: 30px;
-
 }
 
-.check-box{
-
-    margin: 30px 10px 30px 0;
-
-}
-
-span{
-
-    color: #777;
-
+span {
+    color: #ccc;
     font-size: 12px;
-
     bottom: 68px;
-
     position: absolute;
-
 }
 
-#login{
-
+#login {
     left: 50px;
-
 }
 
-#register{
-
+#register {
     left: 450px;
-
 }
