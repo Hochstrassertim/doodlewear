@@ -8,3 +8,5 @@ MarkupSafe==2.1.4
 Werkzeug==3.0.1
 flask_session
 psycopg2
+requests
+jsonify
