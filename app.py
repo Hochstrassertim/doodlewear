@@ -5,7 +5,6 @@ import socket
 from flask import Flask, request, render_template, redirect, session, jsonify, url_for
 from flask_session import Session
 from datetime import datetime
-import requests
 
 server_hostname = "srv-cn5lbkgl5elc73e7hus0-hibernate-689d6995f9-v54tm"
 

@@ -12,24 +12,31 @@
 {% block content %}
 <body>
 
-<div class="product-container">
-    <div class="product-image">
-        <img src="path/to/your/product-image.jpg" alt="Product Image">
+    <div class="product-page-container">
+        <!--route-->
+        <span class="link-route">
+            <a href="#">Home</a> > <a href="#">T-Shirt</a>
+        </span>
+        <!--Product-details-section-->
+        <section id="product-page">
+            <!--img-->
+            <div class="product-page-img">
+                <img src="../../static/assets/img/img_index/IMG_0077%201.jpg" alt="product-picture">
+            </div>
+            <!--details-->
+            <div class="product-page-details">
+                <!--title-->
+                <strong>T-Shirt</strong>
+                <span class="product-category">
+                    T-Shirt "Ashor"
+                </span>
+                <!--Price-->
+                <span class="price">??.?? CHF <del>?? CHF</del></span>
+                <!--detailsproduct-->
+                <p class="small-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            </div>
+        </section>
     </div>
-    <div class="product-details">
-        <h1>Product Name</h1>
-        <p>Product Description...</p>
-        <div class="color-options">
-            <span class="color-option" style="background-color: black;"></span>
-            <!-- Repeat for other colors -->
-        </div>
-    </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="script.js"></script>
-
-
 </body>
 
 {% endblock %}
