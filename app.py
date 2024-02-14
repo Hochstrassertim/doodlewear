@@ -142,7 +142,6 @@ def register():
             session["name"] = username
 
             response_data = {'success': True, 'message': 'Registration successful. You will be redirected in a few seconds.'}
-            time.sleep(3)
             return render_template("profile/login_redirect.html", response_data=response_data)
 
         except Exception as e:
@@ -154,7 +153,8 @@ def register():
 def profile():
     if not session.get("name"):
         return redirect("/login")
-    return render_template('profile/profile.html')
+    response_data = {'username': session["name"]}
+    return render_template('profile/profile.html', response_data=response_data)
 
 @app.route("/logout")
 def logout():
