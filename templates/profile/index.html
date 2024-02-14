@@ -15,7 +15,7 @@
         <button id="login_button" onclick="hideFields()">Already a member? Login</button>
         <button id="register_button" onclick="showAllFields()">Not a member yet? Register</button>
     </div>
-    <form action="{{ url_for('login') }}" method="post">
+    <form action="{{ url_for('login') }}" method="post" id="form">
         <input type="text" placeholder="username" id="username" name="username">
         <input type="text" placeholder="First name" id="first_name" name="first_name">
         <input type="text" placeholder="Last name" id="last_name" name="last_name">
