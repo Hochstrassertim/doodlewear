@@ -57,7 +57,7 @@ body {
     margin-left: 7.5%;
 }
 
-#username, #password, #first_name, #last_name, #email, #phone, #street, #city, #postal_code, #birth_date{
+#username, #password, #first_name, #last_name, #email, #phone, #street, #city, #postal_code, #birth_date {
     margin-left: 19%;
 }
 
