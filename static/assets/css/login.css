@@ -54,10 +54,15 @@ body {
     position: absolute;
     width: 280px;
     transition: .5s;
+    margin-left: 7.5%;
+}
+
+#username, #password, #first_name, #last_name, #email, #phone, #street, #city, #postal_code, #birth_date{
+    margin-left: 19%;
 }
 
 .input-feld {
-    width: 100%;
+    width: 100px;
     padding: 10px 0;
     margin: 5px 0;
     border-left: 0;
