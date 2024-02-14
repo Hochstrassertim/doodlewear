@@ -5,13 +5,11 @@ body {
     overflow-x: hidden;
 }
 
-
-
 .banner {
     text-align: center;
     padding-top: 50%;
     background: linear-gradient(rgb(0, 0, 0), transparent, rgb(0, 0, 0)), url(/static/assets/img/homepagebil.jpg) center center / cover no-repeat scroll;
-    min-height: 50vh; /* 50% der Bildschirmhöhe */
+    min-height: 50vh;
 }
 
 #bgtext {
@@ -24,75 +22,66 @@ body {
     font-size: 500%;
     color: white;
 }
-table,
-th,
-td {
-    border: 1px solid black;
-}
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-left: 0;
-    margin-right: 50%;
-    margin-top: 2%;
+
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Für vier gleich breite Spalten */
+    grid-auto-rows: minmax(min-content, max-content); /* Anpassen der Zeilenhöhe */
+    gap: 40px 30px;
+    max-width: 120%;
+    max-legend: 120%;
 }
 
-table tr th{
-    padding-bottom: 50px;
-    padding-right: -10px;
-}
-
-table th:not(:last-child) {
-    /* padding-right: auto;*/
-}
-
-table tr th img{
-    width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.container{
+.container {
     position: relative;
     width: 100%;
+    height: auto;
 }
+
 .image {
     display: block;
     width: 100%;
-    height: 100%;
-    box-shadow: rgb(45, 43, 43) 100px 100px 100px 0px;
+    height: auto;
 }
+
 .overlay {
     position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 30px;
-    right: 0px;
-    height: 100%;
-    width: 81%;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    bottom: 0;
     opacity: 0;
+    transition: .5s ease;
     background-color: rgba(71, 71, 71, 0.557);
+    /* Stellen Sie sicher, dass das Overlay die gleiche Größe wie das Bild hat */
 }
-.container:hover .overlay{
+
+.container:hover .overlay {
     opacity: 1;
 }
-.text{
+
+.text {
     color: white;
+    font-family: Nunito, sans-serif;
     font-size: 20px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
 
-    .image {
-        margin-bottom: 20px; /* Fügt Abstand zwischen den Bildern hinzu */
+.container:hover .text {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .grid-wrapper {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     #bgtext {
-        font-size: 5vw; /* Passt die Schriftgröße an kleinere Bildschirme an */
+        font-size: 5vw;
     }
 }
