@@ -68,10 +68,14 @@ body {
     font-size: 20px;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 55%;
     transform: translate(-50%, -50%);
     opacity: 0;
     transition: opacity 0.5s ease;
+}
+
+.grid-wrapper:first-child container overlay{
+        left: 50%;
 }
 
 .container:hover .text {
