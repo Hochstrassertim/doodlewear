@@ -69,6 +69,37 @@ def register_user(cursor, username, first_name, last_name, email, phone, street,
         username.lower(), first_name, last_name, email, phone, street, house_number, city, postal_code, country, password, birth_date_obj
     ))
 
+def change_username(cursor, old_username, new_username):
+    # Check if the new username already exists (case-insensitive)
+    check_query = "SELECT * FROM users WHERE LOWER(username) = LOWER(%s)"
+    cursor.execute(check_query, (new_username.lower(),))
+    existing_user = cursor.fetchone()
+
+    if existing_user:
+        # New username already exists, handle accordingly (e.g., raise an exception or return an error)
+        raise ValueError("New username already exists")
+
+    # Update the username
+    update_query = """
+        UPDATE users SET username = LOWER(%s) WHERE LOWER(username) = LOWER(%s)
+    """
+    cursor.execute(update_query, (new_username.lower(), old_username.lower()))
+
+def change_password(cursor, username, old_password, new_password):
+    # Check if the old password matches the password in the database
+    check_query = "SELECT * FROM users WHERE LOWER(username) = LOWER(%s)"
+    cursor.execute(check_query, (username,))
+    user = cursor.fetchone()
+
+    if user and user[2].strip() == old_password.strip():  # Assuming password is at index 2
+        # Update the password
+        update_query = """
+            UPDATE users SET password = %s WHERE LOWER(username) = LOWER(%s)
+        """
+        cursor.execute(update_query, (new_password, username))
+    else:
+        raise ValueError("Invalid old password")
+
 @app.route('/')
 def hello_world():
     return render_template("index.html")
@@ -163,13 +194,43 @@ def settings():
     response_data = {'username': session["name"]}
     return render_template('profile/settings.html', response_data=response_data)
 
-@app.route("/profile/settings/change_username", methods=['GET', 'POST'])
-def change_username():
+@app.route("/profile/settings/change_password", methods=['GET', 'POST'])
+def change_password_route():
     if not session.get("name"):
         return redirect("/login")
-    response_data = {'username': session["name"]}
-    return redirect("/login")
-    #return render_template('profile/settings.html', response_data=response_data)
+
+    if request.method == "POST":
+        old_password = request.form.get("old_password")
+        new_password = request.form.get('new_password')
+        confirm_password = request.form.get('confirm_password')
+        if new_password == confirm_password:
+            if new_password != old_password:
+                conn = connect_to_database()
+                cursor = create_cursor(conn)
+                change_password(cursor, session["name"], old_password, new_password)
+                conn.commit()
+                cursor.close()
+                conn.close()
+        session["name"] = ""
+
+    return redirect("/profile/settings")
+
+@app.route("/profile/settings/change_username", methods=['GET', 'POST'])
+def change_username_route():
+    if not session.get("name"):
+        return redirect("/login")
+
+    if request.method == "POST":
+        username = request.form.get('new_username')
+        conn = connect_to_database()
+        cursor = create_cursor(conn)
+        change_username(cursor, session["name"], username)
+        conn.commit()
+        cursor.close()
+        conn.close()
+        session["name"] = ""
+
+    return redirect("/profile/settings")
 
 @app.route("/logout")
 def logout():
