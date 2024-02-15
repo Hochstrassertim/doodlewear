@@ -1,211 +1,209 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
 .imgLogo {
-  width: 50%;
+    width: 50%;
 }
+
 header {
-  background-color:#2d2b2b ;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    background-color: #2d2b2b;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     font-family: Nunito, sans-serif;
 }
-nav {
-  position: relative;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 75px;
-  background: #2d2b2b;
 
-  z-index: 1000; /* Set a higher z-index value */
+nav {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 75px;
+    background: #2d2b2b;
+    z-index: 1000;
 }
 
 nav .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  max-width: 90%;
-  margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 90%;
+    margin: auto;
 }
 
 nav .navbar .logo a {
-  display: flex;
-  align-items: center;
-  color: #fff;
-  text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
 }
 
 nav .navbar .logo a img {
-  height: 50px;
-  width: auto;
-  margin-right: 10px;
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
 }
 
-nav .navbar .logo a{
-  color: #fff;
-  font-size: 27px;
-  font-weight: 600;
-  text-decoration: none;
-  margin-right: 10px;
+nav .navbar .logo a {
+    color: #fff;
+    font-size: 27px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-right: 10px;
 }
 
 nav .navbar .menu {
-  display: flex;
+    display: flex;
 }
 
 .navbar .menu li {
-  list-style: none;
-  margin: 0 15px;
+    list-style: none;
+    margin: 0 15px;
 }
 
 .navbar .menu li a {
-  color: #fff;
-  font-size: 22px;
-  font-weight: 500;
-  text-decoration: none;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+    text-decoration: none;
 }
 
-.button a{
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  color: #fff;
-  background: #2d2b2b;
-  padding: 7px 12px;
-  font-size: 18px;
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.15);
+.button a {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: #fff;
+    background: #2d2b2b;
+    padding: 7px 12px;
+    font-size: 18px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.15);
 }
 
 .navbar .actions {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .navbar .actions .action-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #3a3939;
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 15px;
-  margin: 0 5px;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3a3939;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .navbar .actions .action-button img {
-  height: 30px;
-  width: auto;
+    height: 30px;
+    width: auto;
 }
 
 .navbar .menu li a:hover, .nav-home:hover {
-  color: #2d2b2b;
-  background-color: #fff;
-  padding: 5px;
-  transition: all 0.3s ease-in-out;
-  border-radius: 5px;
+    color: #2d2b2b;
+    background-color: #fff;
+    padding: 5px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
 }
 
 .navbar .actions .action-button:hover {
-  background-color: #fff;
-  color: #2d2b2b;
-  border: 1px solid #fff;
-  border-radius: 5px;
+    background-color: #fff;
+    color: #2d2b2b;
+    border: 1px solid #fff;
+    border-radius: 5px;
 }
 
 .navbar .actions .action-button:hover img {
-  filter: grayscale(100%) brightness(0);
+    filter: grayscale(100%) brightness(0);
 }
 
-/* Responsive Anpassungen */
 @media (max-width: 768px) {
-  nav .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    nav .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-  nav .navbar .logo a, nav .navbar .menu li a, .navbar .actions .action-button {
-    font-size: 14px;
-  }
+    nav .navbar .logo a, nav .navbar .menu li a, .navbar .actions .action-button {
+        font-size: 14px;
+    }
 
-  .navbar .menu li {
-    margin: 5px 0;
-  }
+    .navbar .menu li {
+        margin: 5px 0;
+    }
 
-  .navbar .actions {
-    margin-top: 10px;
-  }
+    .navbar .actions {
+        margin-top: 10px;
+    }
 
-  .navbar .menu, .navbar .actions {
-    width: 100%;
-    justify-content: center;
-  }
+    .navbar .menu, .navbar .actions {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
-/* Grundlegende Styles */
-
 @media (max-width: 768px) {
-  /* Anpassung des Nav-Containers */
-  nav {
-    height: auto;
-    padding: 10px 0; /* Fügen Sie etwas vertikalen Abstand hinzu */
-  }
+    nav {
+        height: auto;
+        padding: 10px 0; /* Fügen Sie etwas vertikalen Abstand hinzu */
+    }
 
-  /* Anpassung des Navbar-Containers für kleinere Bildschirme */
-  nav .navbar {
-    flex-direction: column;
-    align-items: center; /* Zentrieren Sie die Elemente */
-    padding: 0 20px; /* Fügen Sie horizontale Polsterung hinzu */
-  }
+    /* Anpassung des Navbar-Containers für kleinere Bildschirme */
+    nav .navbar {
+        flex-direction: column;
+        align-items: center; /* Zentrieren Sie die Elemente */
+        padding: 0 20px; /* Fügen Sie horizontale Polsterung hinzu */
+    }
 
-  /* Logo-Größe und Abstände anpassen */
-  nav .navbar .logo a img {
-    height: 40px; /* Verringern Sie die Größe des Logos */
-    margin-bottom: 5px; /* Fügen Sie etwas Abstand unter dem Logo hinzu */
-  }
+    /* Logo-Größe und Abstände anpassen */
+    nav .navbar .logo a img {
+        height: 40px; /* Verringern Sie die Größe des Logos */
+        margin-bottom: 5px; /* Fügen Sie etwas Abstand unter dem Logo hinzu */
+    }
 
-  /* Textlogo anpassen */
-  nav .navbar .logo a {
-    font-size: 20px; /* Verringern Sie die Schriftgröße für das Textlogo */
-  }
+    /* Textlogo anpassen */
+    nav .navbar .logo a {
+        font-size: 20px; /* Verringern Sie die Schriftgröße für das Textlogo */
+    }
 
-  /* Menüpunkte anpassen */
-  .navbar .menu li {
-    margin: 10px 0; /* Erhöhen Sie den Abstand zwischen den Menüpunkten */
-  }
+    /* Menüpunkte anpassen */
+    .navbar .menu li {
+        margin: 10px 0; /* Erhöhen Sie den Abstand zwischen den Menüpunkten */
+    }
 
-  /* Menü-Links anpassen */
-  .navbar .menu li a {
-    font-size: 16px; /* Verringern Sie die Schriftgröße der Menü-Links */
-  }
+    /* Menü-Links anpassen */
+    .navbar .menu li a {
+        font-size: 16px; /* Verringern Sie die Schriftgröße der Menü-Links */
+    }
 
-  /* Aktionsbuttons anpassen */
-  .navbar .actions .action-button {
-    font-size: 14px; /* Verringern Sie die Schriftgröße der Buttons */
-    padding: 5px 10px; /* Verringern Sie das Padding der Buttons */
-    margin: 5px; /* Verringern Sie den Abstand zwischen den Buttons */
-  }
+    /* Aktionsbuttons anpassen */
+    .navbar .actions .action-button {
+        font-size: 14px; /* Verringern Sie die Schriftgröße der Buttons */
+        padding: 5px 10px; /* Verringern Sie das Padding der Buttons */
+        margin: 5px; /* Verringern Sie den Abstand zwischen den Buttons */
+    }
 
-  /* Einkaufstaschen-Icon anpassen */
-  .navbar .actions .action-button img {
-    height: 20px; /* Verringern Sie die Größe des Einkaufstaschen-Icons */
-  }
+    /* Einkaufstaschen-Icon anpassen */
+    .navbar .actions .action-button img {
+        height: 20px; /* Verringern Sie die Größe des Einkaufstaschen-Icons */
+    }
 }
 
 /* Zusätzliche Anpassungen für sehr kleine Bildschirme */
 @media (max-width: 480px) {
-  /* Weitere Anpassungen für sehr kleine Bildschirme hier einfügen */
+    /* Weitere Anpassungen für sehr kleine Bildschirme hier einfügen */
 }
 
 

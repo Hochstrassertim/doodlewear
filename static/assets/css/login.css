@@ -30,8 +30,22 @@ body {
 }
 
 .toggle-btn {
+    transition: .5s;
     padding: 10px 30px;
+    margin-left: 3.01%;
     cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+
+.toggle-btn1 {
+    transition: .5s;
+    padding: 10px 30px;
+    margin-left: 3.01%;
+    cursor: pointer;
+    color: #999;
     background: transparent;
     border: 0;
     outline: none;
@@ -58,20 +72,16 @@ body {
 }
 
 #username, #password, #first_name, #last_name, #email, #phone, #street, #city, #postal_code, #birth_date {
-    margin-left: 19%;
+    width: 100%;
+    height: 25px;
+    margin-bottom: 3px;
+    box-shadow: 0 0 10px rgb(44, 43, 43);
+    border: none;
+    border-radius: 6px;
 }
 
-.input-feld {
-    width: 100px;
-    padding: 10px 0;
-    margin: 5px 0;
-    border-left: 0;
-    border-top: 0;
-    border-right: 0;
-    border-bottom: 1px solid #ccc;
-    outline: none;
-    background: transparent;
-    position: relative;
+#login, #register {
+    margin-top: 10px;
 }
 
 .submit-btn {

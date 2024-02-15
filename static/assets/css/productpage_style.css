@@ -2,7 +2,6 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: Nunito, sans-serif;;
 }
 ul{
     list-style: none;
@@ -11,6 +10,7 @@ a{
     text-decoration: none;
 }
 body {
+    font-family: Nunito, sans-serif;;
     background-color: #f9f9f9;
 }
 /*Product-details-page*/
