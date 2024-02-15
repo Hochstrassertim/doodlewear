@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Product Page</title>
@@ -72,13 +73,13 @@
         <section class="product-all-info">
             <!--menu-->
             <ul class="product-info-menu">
-                <li class="info-list active">Heighlights</li>
-                <li class="info-list">Materials</li>
-                <li class="info-list">How to Use</li>
-                <li class="info-list">Pro Tips</li>
+                <li class="p-info-list active" data-filter="heighlights">Heighlights</li>
+                <li class="p-info-list" data-filter="materials">Materials</li>
+                <li class="p-info-list" data-filter="howuse">How to Use</li>
+                <li class="p-info-list" data-filter="protips">Pro Tips</li>
             </ul>
             <!--info-container-->
-            <div class="info-container heighlights">
+            <div class="info-container heighlights active">
                 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
             </div>
             <!--info-container-->
@@ -104,6 +105,18 @@
         //product info menu
         $(document).on('click','.product-info-menu li', function (){
             $(this).addClass('active').siblings().removeClass('active')
+        });
+        //product-info-filter
+        $(document).ready(function(){
+            $('.p-info-list').click(function() {
+                const value = $(this).attr('data-filter');
+                if (value === 'all') {
+                    $('.info-container').filter('.' + value).show('1000');
+                } else {
+                    $('.info-container').not('.' + value).hide('1000');
+                    $('.info-container').filter('.' + value).show('1000');
+                }
+            });
         });
     </script>
 
