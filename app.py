@@ -177,6 +177,8 @@ def logout():
 
 @app.route('/shirts/productpage', methods=['GET'])
 def productpage():
+    product_id = request.args.get("productid", default=0, type=int)
+    print(product_id)
     return render_template('shirts/productpage.html')
 
 if __name__ == '__main__':

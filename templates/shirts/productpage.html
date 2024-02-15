@@ -4,9 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Product Page</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
     <link rel="stylesheet" href="/static/assets/css/productpage_style.css">
+    <!--google-fonts-import-schrift-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <!--google-fonts-import-icons-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 {% block content %}
@@ -32,11 +37,76 @@
                 </span>
                 <!--Price-->
                 <span class="price">??.?? CHF <del>?? CHF</del></span>
-                <!--detailsproduct-->
-                <p class="small-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                <!--detailproduct-->
+                <p class="small-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+                <!--options-->
+                <div class="product-options">
+                    <span>Color</span>
+                    <!--color-options-container-->
+                    <div class="product-color-options">
+
+                        <!--color-box-->
+                        <div class="product-color-box">
+                            <input type="checkbox" id="white" value="white"/>
+                            <label for="white" style="background-color: #ffff55"></label>
+                        </div>
+
+                    </div>
+                </div><!--end-product-otions-->
+
+                <!--discount-->
+                <span class="product-page-offer"><i class="material-symbols-outlined"></i>20% Discount</span>
+                <!--cart-btns-->
+                <div class="cart-btns">
+                    <a href="#" class="add-cart">Add to Cart</a>
+                    <a href="#" class="add-cart buy-now">Buy Now</a>
+                </div>
+                <!--price-and-shipping-->
+                <div class="price-shipping">
+                    <strong>??.?? CHF <span> + ?? CHF Shipping</span> </strong>
+                </div>
+            </div>
+        </section>
+
+        <!--product-all-info-->
+        <section class="product-all-info">
+            <!--menu-->
+            <ul class="product-info-menu">
+                <li class="info-list active">Heighlights</li>
+                <li class="info-list">Materials</li>
+                <li class="info-list">How to Use</li>
+                <li class="info-list">Pro Tips</li>
+            </ul>
+            <!--info-container-->
+            <div class="info-container heighlights">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+            </div>
+            <!--info-container-->
+            <div class="info-container materials">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+            </div>
+            <!--info-container-->
+            <div class="info-container howuse">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+            </div>
+            <!--info-container-->
+            <div class="info-container protips">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
             </div>
         </section>
     </div>
+    <!--Jquery-->
+    <script type="text/javascript" src="../../static/assets/js/jquery-3.7.1.js"></script>
+    <!--Script-->
+    <script type="text/javascript">
+        //only one color select => kann man noch ausbauen.
+
+        //product info menu
+        $(document).on('click','.product-info-menu li', function (){
+            $(this).addClass('active').siblings().removeClass('active')
+        });
+    </script>
+
 </body>
 
 {% endblock %}
