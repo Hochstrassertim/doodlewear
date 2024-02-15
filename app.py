@@ -4,6 +4,7 @@ import psycopg2
 import socket
 from flask import Flask, request, render_template, redirect, session, jsonify, url_for
 from flask_session import Session
+from account import *
 from datetime import datetime
 
 server_hostname = "srv-cn5lbkgl5elc73e7hus0-hibernate-689d6995f9-v54tm"
@@ -15,89 +16,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-def connect_to_database():
-    # Connection string for PostgreSQL
 
-    if socket.gethostname() == server_hostname:
-        connection_string = "postgres://postgresql:Mre24ol0TQsfbyMY7AmiHxFaiMW5qTZ2@dpg-cn52h90l6cac73a8vvu0-a/doodlewear"
-    else:
-        connection_string = "dbname=doodlewear user=postgresql password=Mre24ol0TQsfbyMY7AmiHxFaiMW5qTZ2 host=dpg-cn52h90l6cac73a8vvu0-a.frankfurt-postgres.render.com port=5432"
-
-    # Establish a connection to the PostgreSQL database
-    conn = psycopg2.connect(connection_string)
-    return conn
-
-def create_cursor(conn):
-    return conn.cursor()
-
-def get_user_info(cursor, username):
-    query = "SELECT * FROM users WHERE username ILIKE %s"
-    cursor.execute(query, (username,))
-
-    results = cursor.fetchall()
-
-    if results:
-        columns = ['id', 'username', 'password', 'birth_date', 'email', 'phone_number', 'street', 'house_number', 'city', 'postal_code', 'country', 'role']
-        return [dict(zip(columns, row)) for row in results]
-    else:
-        return None
-
-
-def register_user(cursor, username, first_name, last_name, email, phone, street, house_number, city, postal_code, country, password, birth_date):
-    # Check if the username already exists (case-insensitive)
-    check_query = "SELECT * FROM users WHERE LOWER(username) = LOWER(%s)"
-    cursor.execute(check_query, (username.lower(),))
-    existing_user = cursor.fetchone()
-
-    if existing_user:
-        # Username already exists, handle accordingly (e.g., raise an exception or return an error)
-        raise ValueError("Username already exists")
-
-    # Convert birth_date to a date object
-    birth_date_obj = datetime.strptime(birth_date, '%Y-%m-%d').date()
-
-    # Insert the new user
-    insert_query = """
-        INSERT INTO users (
-            username, first_name, last_name, email, phone_number, street, house_number, city, postal_code, country, password, birth_date, role
-        ) VALUES (
-            %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'user'
-        )
-    """
-    cursor.execute(insert_query, (
-        username.lower(), first_name, last_name, email, phone, street, house_number, city, postal_code, country, password, birth_date_obj
-    ))
-
-def change_username(cursor, old_username, new_username):
-    # Check if the new username already exists (case-insensitive)
-    check_query = "SELECT * FROM users WHERE LOWER(username) = LOWER(%s)"
-    cursor.execute(check_query, (new_username.lower(),))
-    existing_user = cursor.fetchone()
-
-    if existing_user:
-        # New username already exists, handle accordingly (e.g., raise an exception or return an error)
-        raise ValueError("New username already exists")
-
-    # Update the username
-    update_query = """
-        UPDATE users SET username = LOWER(%s) WHERE LOWER(username) = LOWER(%s)
-    """
-    cursor.execute(update_query, (new_username.lower(), old_username.lower()))
-
-def change_password(cursor, username, old_password, new_password):
-    # Check if the old password matches the password in the database
-    check_query = "SELECT * FROM users WHERE LOWER(username) = LOWER(%s)"
-    cursor.execute(check_query, (username,))
-    user = cursor.fetchone()
-
-    if user and user[2].strip() == old_password.strip():  # Assuming password is at index 2
-        # Update the password
-        update_query = """
-            UPDATE users SET password = %s WHERE LOWER(username) = LOWER(%s)
-        """
-        cursor.execute(update_query, (new_password, username))
-    else:
-        raise ValueError("Invalid old password")
 
 @app.route('/')
 def hello_world():
@@ -210,7 +129,7 @@ def change_password_route():
                 conn.commit()
                 cursor.close()
                 conn.close()
-        session["name"] = ""
+        session["name"] = None
 
     return redirect("/profile/settings")
 
@@ -227,9 +146,49 @@ def change_username_route():
         conn.commit()
         cursor.close()
         conn.close()
-        session["name"] = ""
+        session["name"] = None
 
     return redirect("/profile/settings")
+
+@app.route("/profile/settings/change_address", methods=['GET', 'POST'])
+def change_address_route():
+    if not session.get("name"):
+        return redirect("/login")
+
+    if request.method == "POST":
+        street = request.form.get('street')
+        house_number = request.form.get('house_number')
+        postal_code = request.form.get('postal_code')
+        city = request.form.get('city')
+        country = request.form.get('country')
+        conn = connect_to_database()
+        cursor = create_cursor(conn)
+        change_address(cursor, session["name"], street, house_number, postal_code, city, country)
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    return redirect("/profile/settings")
+
+@app.route("/profile/settings/delete_account", methods=['GET'])
+def delete_account_route():
+    if not session.get("name"):
+        return redirect("/login")
+
+    return render_template('profile/confirm_delete.html')
+
+@app.route("/profile/settings/delete_account/confirm", methods=['GET'])
+def delete_account_confirm_route():
+    if not session.get("name"):
+        return redirect("/login")
+    conn = connect_to_database()
+    cursor = create_cursor(conn)
+    delete_user(cursor, session["name"])
+    conn.commit()
+    cursor.close()
+    conn.close()
+    session["name"] = None
+    return redirect("/")
 
 @app.route("/logout")
 def logout():

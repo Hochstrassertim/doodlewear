@@ -22,7 +22,7 @@
     </form>
 </div>
 <div id="change_address">
-    <form>
+    <form action="/profile/settings/change_address" method="post">
         <input type="text" placeholder="Street" id="street" name="street">
         <input type="int" placeholder="House number" id="house_number" name="house_number"><br>
         <input type="text" placeholder="Postal code" id="postal_code" name="postal_code">
@@ -32,7 +32,8 @@
     </form>
 </div>
 <div id="delete_account">
-    <button id="delete_button" onclick="deleteAccount()">Delete account</button>
+    <a href="/profile/settings/delete_account"><button id="delete_button">Delete account</button></a>
+    <!--button id="delete_button" onclick="deleteAccount()">Delete account</--button-->
 </div>
 </body>
 <script>
