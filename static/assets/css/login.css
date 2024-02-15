@@ -66,18 +66,6 @@ body {
 #login, #register {
     margin-top: 10px;
 }
-.input-feld {
-    width: 100px;
-    padding: 10px 0;
-    margin: 5px 0;
-    border-left: 0;
-    border-top: 0;
-    border-right: 0;
-    border-bottom: 1px solid #ccc;
-    outline: none;
-    background: transparent;
-    position: relative;
-}
 
 .submit-btn {
     width: 85%;
