@@ -15,26 +15,30 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 
-
 @app.route('/')
 def hello_world():
     return render_template("index.html")
+
 
 @app.route('/about')
 def about():
     return render_template("about.html")
 
+
 @app.route('/color')
 def color():
     return render_template("color.html")
+
 
 @app.route('/shop')
 def shop():
     return render_template("shop.html")
 
+
 @app.route('/story')
 def story():
     return render_template("story.html")
+
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -62,6 +66,7 @@ def login():
         message = request.args.get("message", default="", type=str)
         response_data = {'message': message}
         return render_template("profile/index.html", response_data=response_data)
+
 
 @app.route("/register", methods=["POST", "GET"])
 def register():
@@ -95,13 +100,15 @@ def register():
             # Set the session for the newly registered user
             session["name"] = username
 
-            response_data = {'success': True, 'message': 'Registration successful. You will be redirected in a few seconds.'}
+            response_data = {'success': True,
+                             'message': 'Registration successful. You will be redirected in a few seconds.'}
             return render_template("profile/login_redirect.html", response_data=response_data)
 
         except Exception as e:
             return jsonify({'success': False, 'message': 'Error registering user: {}'.format(str(e))})
 
         return render_template("profile/index.html")
+
 
 @app.route("/profile")
 def profile():
@@ -110,12 +117,14 @@ def profile():
     response_data = {'username': session["name"]}
     return render_template('profile/profile.html', response_data=response_data)
 
+
 @app.route("/profile/settings")
 def settings():
     if not session.get("name"):
         return redirect("/login")
     response_data = {'username': session["name"]}
     return render_template('profile/settings.html', response_data=response_data)
+
 
 @app.route("/profile/settings/change_password", methods=['GET', 'POST'])
 def change_password_route():
@@ -141,6 +150,7 @@ def change_password_route():
         response_data = {'message': ''}
         return render_template('profile/index.html', response_data=response_data)
 
+
 @app.route("/profile/settings/change_username", methods=['GET', 'POST'])
 def change_username_route():
     if not session.get("name"):
@@ -157,6 +167,7 @@ def change_username_route():
         session["name"] = None
 
     return redirect("/profile/settings")
+
 
 @app.route("/profile/settings/change_address", methods=['GET', 'POST'])
 def change_address_route():
@@ -178,6 +189,7 @@ def change_address_route():
 
     return redirect("/profile/settings")
 
+
 @app.route("/profile/settings/delete_account", methods=['GET'])
 def delete_account_route():
     if not session.get("name"):
@@ -185,10 +197,12 @@ def delete_account_route():
 
     return render_template('profile/confirm_delete.html')
 
+
 @app.route("/logout")
 def logout():
     session["name"] = None
     return redirect("/login")
+
 
 @app.route("/profile/settings/delete_account/confirm", methods=['GET'])
 def delete_account_confirm_route():
@@ -203,37 +217,47 @@ def delete_account_confirm_route():
     session["name"] = None
     return redirect("/")
 
+
 @app.route("/admin")
 def admin_route():
-
     if not session.get("role") == "admin":
         if not session.get("name"):
             return redirect(url_for('login', message="Please login to continue"))
         return redirect(url_for('login', message="You do not have permission to perform this action"))
     return render_template("profile/admin/index.html", response_data={})
 
+
 @app.route('/admin/view_products')
 def view_products():
+    if not session.get("role") == "admin":
+        return redirect(url_for('login', message="You do not have permission to perform this action"))
     conn = connect_to_database()
     cursor = conn.cursor()
     data = list_products(cursor)
     cursor.close()
     conn.close()
-    return render_template('profile/admin/view_products.html', data=data, response_data={'username': session.get('name')})
+    return render_template('profile/admin/view_products.html', data=data,
+                           response_data={'username': session.get('name')})
+
 
 @app.route('/admin/edit_product', methods=['GET'])
 def edit_product():
+    if not session.get("role") == "admin":
+        return redirect(url_for('login', message="You do not have permission to perform this action"))
     productId = int(request.args.get("productId"))
     conn = connect_to_database()
     cursor = conn.cursor()
     data = view_single_product(cursor, productId)
     cursor.close()
     conn.close()
-    return render_template('profile/admin/edit_product.html', data=data, response_data={'username': session.get('name')})
+    return render_template('profile/admin/edit_product.html', data=data,
+                           response_data={'username': session.get('name')})
 
 
 @app.route('/admin/edit_product/save', methods=['POST'])
 def save_edit_product():
+    if not session.get("role") == "admin":
+        return redirect(url_for('login', message="You do not have permission to perform this action"))
     try:
         data = request.get_json()
         productId = int(data.get("productId"))
@@ -264,6 +288,7 @@ def productpage():
     product_id = request.args.get("productid", default=0, type=int)
     print(product_id)
     return render_template('shirts/productpage.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
