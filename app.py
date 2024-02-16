@@ -231,19 +231,34 @@ def edit_product():
     conn.close()
     return render_template('profile/admin/edit_product.html', data=data, response_data={'username': session.get('name')})
 
-@app.route('/admin/edit_product/save', methods=['GET'])
+
+@app.route('/admin/edit_product/save', methods=['POST'])
 def save_edit_product():
-    productId = int(request.args.get("productId"))
-    name = request.args.get("name")
-    description = request.args.get('description')
-    price = float(request.args.get('price'))
-    available = int(request.args.get('available'))
-    conn = connect_to_database()
-    cursor = conn.cursor()
-    data = view_single_product(cursor, productId)
-    cursor.close()
-    conn.close()
-    return render_template('profile/admin/edit_product.html', data=data, response_data={'username': session.get('name')})
+    try:
+        data = request.get_json()
+        productId = int(data.get("productId"))
+        name = data.get("name")
+        description = data.get('description')
+        price = float(data.get('price'))
+        available = int(data.get('available'))
+        story = data.get('story')
+        picture = data.get('picture')
+        discount = data.get('discount')
+
+        conn = connect_to_database()
+        cursor = conn.cursor()
+        update_product(cursor, productId, name, description, price, available, story, picture, discount)
+        data = view_single_product(cursor, productId)
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+        return jsonify({'success': True, 'message': 'Product updated successfully', 'data': data})
+
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'Error updating product: {str(e)}'})
+
+
 @app.route('/shirts/productpage', methods=['GET'])
 def productpage():
     product_id = request.args.get("productid", default=0, type=int)
