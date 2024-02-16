@@ -3,32 +3,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="/static/assets/profile/header.css">
+    <link rel="stylesheet" href="/static/assets/css/header_styles.css">
+
 </head>
 {% block content %}
 <body>
-    <h1>Data from Database</h1>
-    <table border="1">
-        <tr class="table_head">
-            {% for key in data[0].keys() %}
-                <th>{{ key }}</th>
-            {% endfor %}
-        <th></th>
-        </tr>
-        {% for row in data %}
-            <tr class="table_data">
-                <td><p>{{ row.get('id') }}</p></td>
-                <td><input type="text" value="{{ row.get('name') }}"></td>
-                <td><textarea>{{ row.get('description') }}</textarea></td>
-                <td><input type="number" value="{{ row.get('price') }}"></td>
-                <td><input type="number" min="-1" value="{{ row.get('available') }}"></td>
-                <td><textarea>{{ row.get('story') }}</textarea></td>
-                <td><input type="text" value="{{ row.get('picture') }}"></td>
-                <td><input type="text" value="{{ row.get('discount') }}"></td>
-            <td><button onclick="saveProduct({{ row.get('id') }})">Edit</button></td>
+    <h1>Edit Product</h1>
+    <form id="editProductForm">
+        <input type="hidden" id="productId" value="{{ data[0].get('id') }}">
+        <table border="1">
+            <tr class="table_head">
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Availability</th>
+                <th>Story</th>
+                <th>Product picture</th>
+                <th>Discount</th>
+                <th></th>
             </tr>
-        {% endfor %}
-    </table>
+            {% for row in data %}
+                <tr class="table_data">
+                    <td><p>{{ row.get('id') }}</p></td>
+                    <td><input id="name" type="text" value="{{ row.get('name') }}"></td>
+                    <td><textarea id="description">{{ row.get('description') }}</textarea></td>
+                    <td><input id="price" type="number" value="{{ row.get('price') }}"></td>
+                    <td><input id="available" type="number" min="-1" value="{{ row.get('available') }}"></td>
+                    <td><textarea id="story">{{ row.get('story') }}</textarea></td>
+                    <td><input id="picture" type="text" value="{{ row.get('picture') }}"></td>
+                    <td><input id="discount" type="text" value="{{ row.get('discount') }}"></td>
+                    <td><button type="button" onclick="saveProduct()">Save</button></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </form>
 </body>
 <script src="/static/assets/profile/manage_products.js"></script>
 {% endblock %}
