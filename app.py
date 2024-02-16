@@ -24,6 +24,10 @@ def hello_world():
 def about():
     return render_template("about.html")
 
+@app.route('/color')
+def color():
+    return render_template("color.html")
+
 @app.route('/shop')
 def shop():
     return render_template("shop.html")
