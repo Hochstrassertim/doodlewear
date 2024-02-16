@@ -1,0 +1,24 @@
+* {
+    font-family: Calibri;
+}
+body {
+    background: black;
+}
+table {
+    width: 80%;
+    margin-left: 10%;
+    background: #999;
+    border-collapse: collapse;
+    border: 2px solid white;
+}
+td, th {
+    border: 2px solid black;
+    height: 35px;
+}
+td {
+    padding: 5px;
+}
+.table_head {
+    background: #777;
+}
+.table_data:nth-child(even) {background-color: #bbb;}

@@ -1,11 +1,9 @@
-import time
-
-import psycopg2
-import socket
 from flask import Flask, request, render_template, redirect, session, jsonify, url_for
 from flask_session import Session
-from account import *
-from datetime import datetime
+from manage_account import *
+from admin import *
+from socket import *
+from psycopg2 import *
 
 server_hostname = "srv-cn5lbkgl5elc73e7hus0-hibernate-689d6995f9-v54tm"
 
@@ -50,13 +48,16 @@ def login():
                 print("User Info:", user_info)  # Print user information for debugging
                 if password == user_info['password']:
                     session["name"] = username
+                    session['role'] = user_info['role']
                     return redirect("/profile")
             response_data = {}
             return render_template("profile/index.html", response_data=response_data)
-        response_data = {}
+        response_data = {'message': 'Invalid username or password'}
         return render_template("profile/index.html", response_data=response_data)
-    response_data = {}
-    return render_template("profile/index.html", response_data=response_data)
+    elif request.method == "GET":
+        message = request.args.get("message", default="", type=str)
+        response_data = {'message': message}
+        return render_template("profile/index.html", response_data=response_data)
 
 @app.route("/register", methods=["POST", "GET"])
 def register():
@@ -96,7 +97,7 @@ def register():
         except Exception as e:
             return jsonify({'success': False, 'message': 'Error registering user: {}'.format(str(e))})
 
-    return render_template("profile/index.html")
+        return render_template("profile/index.html")
 
 @app.route("/profile")
 def profile():
@@ -130,8 +131,11 @@ def change_password_route():
                 cursor.close()
                 conn.close()
         session["name"] = None
-
-    return redirect("/profile/settings")
+        response_data = {'message': 'Password changed successfully. Please login again.'}
+        return render_template('profile/index.html', response_data=response_data)
+    else:
+        response_data = {'message': ''}
+        return render_template('profile/index.html', response_data=response_data)
 
 @app.route("/profile/settings/change_username", methods=['GET', 'POST'])
 def change_username_route():
@@ -177,6 +181,11 @@ def delete_account_route():
 
     return render_template('profile/confirm_delete.html')
 
+@app.route("/logout")
+def logout():
+    session["name"] = None
+    return redirect("/login")
+
 @app.route("/profile/settings/delete_account/confirm", methods=['GET'])
 def delete_account_confirm_route():
     if not session.get("name"):
@@ -190,11 +199,47 @@ def delete_account_confirm_route():
     session["name"] = None
     return redirect("/")
 
-@app.route("/logout")
-def logout():
-    session["name"] = None
-    return redirect("/login")
+@app.route("/admin")
+def admin_route():
 
+    if not session.get("role") == "admin":
+        if not session.get("name"):
+            return redirect(url_for('login', message="Please login to continue"))
+        return redirect(url_for('login', message="You do not have permission to perform this action"))
+    return render_template("profile/admin/index.html", response_data={})
+
+@app.route('/admin/view_products')
+def view_products():
+    conn = connect_to_database()
+    cursor = conn.cursor()
+    data = list_products(cursor)
+    cursor.close()
+    conn.close()
+    return render_template('profile/admin/view_products.html', data=data, response_data={'username': session.get('name')})
+
+@app.route('/admin/edit_product', methods=['GET'])
+def edit_product():
+    productId = int(request.args.get("productId"))
+    conn = connect_to_database()
+    cursor = conn.cursor()
+    data = view_single_product(cursor, productId)
+    cursor.close()
+    conn.close()
+    return render_template('profile/admin/edit_product.html', data=data, response_data={'username': session.get('name')})
+
+@app.route('/admin/edit_product/save', methods=['GET'])
+def save_edit_product():
+    productId = int(request.args.get("productId"))
+    name = request.args.get("name")
+    description = request.args.get('description')
+    price = float(request.args.get('price'))
+    available = int(request.args.get('available'))
+    conn = connect_to_database()
+    cursor = conn.cursor()
+    data = view_single_product(cursor, productId)
+    cursor.close()
+    conn.close()
+    return render_template('profile/admin/edit_product.html', data=data, response_data={'username': session.get('name')})
 @app.route('/shirts/productpage', methods=['GET'])
 def productpage():
     product_id = request.args.get("productid", default=0, type=int)

@@ -11,11 +11,15 @@
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
+
     <div class="form-box">
         <div class="button-box">
             <div id="btn"></div>
             <button type="button" id="login_button" class="toggle-btn" onclick="login()">Login</button>
             <button type="button" id="register_button" class="toggle-btn1" onclick="register()">Register</button>
+        </div>
+        <div id="info">
+            <p id="info_paragraph">{{ response_data.message }}</p>
         </div>
         <form id="login" class="input-group" action="/login" method="post">
             <div class="input-fields">

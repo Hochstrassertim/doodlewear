@@ -1,7 +1,8 @@
-import socket
+
 import psycopg2
 import datetime
-from datetime import *
+import socket
+from socket import gethostname
 
 server_hostname = "srv-cn5lbkgl5elc73e7hus0-hibernate-689d6995f9-v54tm"
 def connect_to_database():

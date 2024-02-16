@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="../static/assets/css/header_styles.css">
+    <link rel="stylesheet" href="../static/assets/css/footer_styles.css">
+    <link rel="stylesheet" href="/static/assets/profile/dropdown_style.css">
+    <link rel="stylesheet" href="/static/assets/profile/admin_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="/static/assets/js/login.js"></script>
+</head>
+<body>
+<nav>
+    <div class="navbar">
+        <div class="logo"><a href="/"><img src="../static/assets/img/Strichman_logo.JPG" alt="CodingLab Logo"></a>
+        </div>
+        <div class="logo"><a href="/">Doodlewear</a></div>
+        <ul class="menu">
+            <li><a href="/" class="nav-home">Home</a></li>
+            <li><a href="/shop" class="nav-home">Shop</a></li>
+            <li><a href="/about" class="nav-home">About</a></li>
+            <li><a href="/story" class="nav-home">Story</a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+
+        </ul>
+        <div class="actions">
+            <p id="username_paragraph">{{ response_data.username }}</p>
+            <div class="dropdown">
+              <img class="dropbtn" src="/static/assets/img/user_profile.png">
+              <div class="dropdown-content">
+                <a href="/profile/settings">User settings</a>
+                <a href="/admin/manage_products">Manage products</a>
+                <a href="/logout">Logout</a>
+              </div>
+            </div>
+            <a href="#" class="action-button"><img src="../static/assets/img/shopping_bag.png" alt="Shopping Bag"></a>
+        </div>
+    </div>
+</nav>
+
+{% block content %}
+{% endblock %}
+</body>
+</html>

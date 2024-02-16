@@ -1,0 +1,30 @@
+{% extends 'profile/admin/header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% block content %}
+<body>
+    <h1>Data from Database</h1>
+    <table border="1">
+        <tr class="table_head">
+            {% for key in data[0].keys() %}
+                <th>{{ key }}</th>
+            {% endfor %}
+        <th></th>
+        </tr>
+        {% for row in data %}
+            <tr class="table_data">
+                {% for value in row.values() %}
+                    <td>{{ value }}</td>
+                {% endfor %}
+            <td><button onclick="selectProcuctToEdit({{ row.get('id') }})">Edit</button></td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+<script src="/static/assets/profile/manage_products.js"></script>
+{% endblock %}
+</html>

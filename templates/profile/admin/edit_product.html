@@ -1,0 +1,35 @@
+{% extends 'profile/admin/header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% block content %}
+<body>
+    <h1>Data from Database</h1>
+    <table border="1">
+        <tr class="table_head">
+            {% for key in data[0].keys() %}
+                <th>{{ key }}</th>
+            {% endfor %}
+        <th></th>
+        </tr>
+        {% for row in data %}
+            <tr class="table_data">
+                <td><p>{{ row.get('id') }}</p></td>
+                <td><input type="text" value="{{ row.get('name') }}"></td>
+                <td><textarea>{{ row.get('description') }}</textarea></td>
+                <td><input type="number" value="{{ row.get('price') }}"></td>
+                <td><input type="number" min="-1" value="{{ row.get('available') }}"></td>
+                <td><textarea>{{ row.get('story') }}</textarea></td>
+                <td><input type="text" value="{{ row.get('picture') }}"></td>
+                <td><input type="text" value="{{ row.get('discount') }}"></td>
+            <td><button onclick="saveProduct({{ row.get('id') }})">Edit</button></td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+<script src="/static/assets/profile/manage_products.js"></script>
+{% endblock %}
+</html>
