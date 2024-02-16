@@ -242,9 +242,15 @@ def save_edit_product():
     return render_template('profile/admin/edit_product.html', data=data, response_data={'username': session.get('name')})
 @app.route('/shirts/productpage', methods=['GET'])
 def productpage():
-    product_id = request.args.get("productid", default=0, type=int)
-    print(product_id)
-    return render_template('shirts/productpage.html')
+    productId = int(request.args.get("productId"))
+    conn = connect_to_database()
+    cursor = conn.cursor()
+    data = view_single_product(cursor, productId)
+    current_data = data[0]
+    cursor.close()
+    conn.close()
+    return render_template('shirts/productpage.html', data=current_data, response_data={'username': session.get('name')})
+
 
 if __name__ == '__main__':
     app.run(debug=True)
