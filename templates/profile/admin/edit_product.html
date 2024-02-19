@@ -6,7 +6,6 @@
     <title>Edit Product</title>
     <link rel="stylesheet" href="/static/assets/profile/header.css">
     <link rel="stylesheet" href="/static/assets/css/header_styles.css">
-
 </head>
 {% block content %}
 <body>
@@ -28,19 +27,23 @@
             {% for row in data %}
                 <tr class="table_data">
                     <td><p>{{ row.get('id') }}</p></td>
-                    <td><input id="name" type="text" value="{{ row.get('name') }}"></td>
-                    <td><textarea id="description">{{ row.get('description') }}</textarea></td>
+                    <td><input id="name" type="text" value="{{ row.get('name') }}" onchange="updatePreview()"></td>
+                    <td><textarea id="description" onchange="updatePreview()">{{ row.get('description') }}</textarea></td>
                     <td><input id="price" type="number" value="{{ row.get('price') }}"></td>
                     <td><input id="available" type="number" min="-1" value="{{ row.get('available') }}"></td>
                     <td><textarea id="story">{{ row.get('story') }}</textarea></td>
                     <td><input id="picture" type="text" value="{{ row.get('picture') }}"></td>
                     <td><input id="discount" type="text" value="{{ row.get('discount') }}"></td>
-                    <td><button type="button" onclick="saveProduct()">Save</button></td>
+                    <td>
+                        <button onclick="saveProduct()">Save</button>
+                        <button onclick="reload()">Cancel edit</button>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
     </form>
 </body>
 <script src="/static/assets/profile/manage_products.js"></script>
+{% include 'profile/admin/example_productpage.html' %}
 {% endblock %}
 </html>

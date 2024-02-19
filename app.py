@@ -223,7 +223,9 @@ def view_products():
 
 @app.route('/admin/edit_product', methods=['GET'])
 def edit_product():
-    productId = int(request.args.get("productId"))
+    productId = int(request.args.get("productId", default=0))
+    if productId == 0:
+        return redirect(url_for('view_products'))
     conn = connect_to_database()
     cursor = conn.cursor()
     data = view_single_product(cursor, productId)
@@ -253,7 +255,8 @@ def save_edit_product():
         cursor.close()
         conn.close()
 
-        return jsonify({'success': True, 'message': 'Product updated successfully', 'data': data})
+        #return jsonify({'success': True, 'message': 'Product updated successfully', 'data': data})
+        return redirect("/admin/view_products?productId=" + str(productId))
 
     except Exception as e:
         return jsonify({'success': False, 'message': f'Error updating product: {str(e)}'})

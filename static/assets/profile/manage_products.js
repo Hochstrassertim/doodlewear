@@ -1,5 +1,13 @@
+function reload() {
+    window.location.href = window.location.href;
+}
+
 function selectProcuctToEdit(input) {
-    window.location.href = "/admin/edit_product?productId=" + input;
+    if (input == null) {
+        window.location.href = "/admin/view_products"
+    } else {
+        window.location.href = "/admin/edit_product?productId=" + input;
+    }
 }
 
 function saveProduct() {
@@ -40,3 +48,22 @@ function saveProduct() {
         // Optionally handle error or show a message to the user
     });
 }
+
+function updatePreview() {
+        document.getElementById("previewDescription").textContent = document.getElementById("description").value;
+        document.getElementById("previewStory").textContent = document.getElementById("story").value;
+        document.getElementById("previewName").textContent = document.getElementById("name").value;
+        document.getElementById("previewPrice").textContent = document.getElementById("price").value;
+        document.getElementById("previewDescription").textContent = document.getElementById("description").value;
+        document.getElementById("previewDescription").textContent = document.getElementById("description").value;
+        document.getElementById("previewDescription").textContent = document.getElementById("description").value;
+
+    }
+
+document.getElementById("name").addEventListener("input", updatePreview);
+document.getElementById("description").addEventListener("input", updatePreview);
+document.getElementById("price").addEventListener("input", updatePreview);
+document.getElementById("availability").addEventListener("input", updatePreview);
+document.getElementById("story").addEventListener("input", updatePreview);
+document.getElementById("picture").addEventListener("input", updatePreview);
+document.getElementById("discount").addEventListener("input", updatePreview);
