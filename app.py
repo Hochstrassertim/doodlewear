@@ -229,7 +229,6 @@ def view_products():
 def edit_product():
     if not session.get("role") == "admin":
         return redirect(url_for('login', message="You do not have permission to perform this action"))
-    productId = int(request.args.get("productId"))
     productId = int(request.args.get("productId", default=0))
     if productId == 0:
         return redirect(url_for('view_products'))
