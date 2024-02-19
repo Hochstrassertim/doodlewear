@@ -1,0 +1,62 @@
+* {
+    background-color: black;
+}
+
+h1 {
+    color: white;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 60px;
+    font-family: serif;
+}
+
+input{
+    background-color: white;
+    width: 70%;
+    margin-left: 12%;
+    font-size: 20px;
+    padding: 16px 16px;
+    border-radius: 10px;
+    border-color: black;
+    margin-bottom: 20px;
+}
+
+textarea {
+    background-color: white;
+    width: 70%;
+    margin-left: 12%;
+    font-size: 20px;
+    padding: 16px 16px;
+    border-radius: 10px;
+    border-color: black;
+    margin-bottom: 25px;
+    font-family: serif;
+}
+
+ input:focus-within {
+     outline: none;
+     border-color: aqua;
+     border-width: 3px;
+ }
+
+ textarea:focus-within {
+     outline: none;
+     border-color: aqua;
+     border-width: 3px;
+ }
+
+ button {
+     background-color: aqua;
+     border-radius: 20px;
+     border-color: black;
+     font-size: 22px;
+     padding: 10px 10px;
+     text-align: center;
+     display: flex;
+     margin: auto;
+ }
+
+ button:hover {
+     opacity: 80%;
+     cursor: pointer;
+ }
