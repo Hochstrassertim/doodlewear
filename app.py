@@ -15,26 +15,30 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 
-
 @app.route('/')
 def hello_world():
     return render_template("index.html")
+
 
 @app.route('/about')
 def about():
     return render_template("about.html")
 
+
 @app.route('/color')
 def color():
     return render_template("color.html")
+
 
 @app.route('/shop')
 def shop():
     return render_template("shop.html")
 
+
 @app.route('/story')
 def story():
     return render_template("story.html")
+
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -62,6 +66,7 @@ def login():
         message = request.args.get("message", default="", type=str)
         response_data = {'message': message}
         return render_template("profile/index.html", response_data=response_data)
+
 
 @app.route("/register", methods=["POST", "GET"])
 def register():
@@ -205,7 +210,6 @@ def delete_account_confirm_route():
 
 @app.route("/admin")
 def admin_route():
-
     if not session.get("role") == "admin":
         if not session.get("name"):
             return redirect(url_for('login', message="Please login to continue"))
@@ -223,6 +227,9 @@ def view_products():
 
 @app.route('/admin/edit_product', methods=['GET'])
 def edit_product():
+    if not session.get("role") == "admin":
+        return redirect(url_for('login', message="You do not have permission to perform this action"))
+    productId = int(request.args.get("productId"))
     productId = int(request.args.get("productId", default=0))
     if productId == 0:
         return redirect(url_for('view_products'))
@@ -236,6 +243,8 @@ def edit_product():
 
 @app.route('/admin/edit_product/save', methods=['POST'])
 def save_edit_product():
+    if not session.get("role") == "admin":
+        return redirect(url_for('login', message="You do not have permission to perform this action"))
     try:
         data = request.get_json()
         productId = int(data.get("productId"))
@@ -264,9 +273,16 @@ def save_edit_product():
 
 @app.route('/shirts/productpage', methods=['GET'])
 def productpage():
-    product_id = request.args.get("productid", default=0, type=int)
-    print(product_id)
-    return render_template('shirts/productpage.html')
+    productId = int(request.args.get("productId"))
+    conn = connect_to_database()
+    cursor = conn.cursor()
+    data = view_single_product(cursor, productId)
+    current_data = data[0]
+    cursor.close()
+    conn.close()
+    return render_template('shirts/productpage.html', data=current_data, response_data={'username': session.get('name')})
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

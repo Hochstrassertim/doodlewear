@@ -33,13 +33,11 @@
             <div class="product-page-details">
                 <!--title-->
                 <strong>T-Shirt</strong>
-                <span class="product-category">
-                    T-Shirt "Ashor"
-                </span>
+                <span class="product-category">{{ data.get('name') }}</span>
                 <!--Price-->
-                <span class="price">??.?? CHF <del>?? CHF</del></span>
+                <span class="price">{{ data.get('price') }} CHF <del>{{ data.get('discount') }} CHF</del></span>
                 <!--detailproduct-->
-                <p class="small-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+                <p class="small-desc">{{ data.get('description') }}</p>
                 <!--cart-btns-->
                 <div class="cart-btns">
                     <label for="tshirt-size">Wähle deine T-Shirt Größe:</label>
@@ -75,9 +73,7 @@
                 <li class="p-info-list" data-filter="materials">Materials</li>
             </ul>
             <!--info-container-->
-            <div class="info-container heighlights active">
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-            </div>
+            <div class="info-container heighlights active">{{ data.get('story') }}</div>
             <!--info-container-->
             <div class="info-container materials">
                 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
