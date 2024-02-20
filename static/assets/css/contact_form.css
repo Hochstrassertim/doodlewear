@@ -35,18 +35,18 @@ textarea {
 
  input:focus-within {
      outline: none;
-     border-color: aqua;
+     border-color: grey;
      border-width: 3px;
  }
 
  textarea:focus-within {
      outline: none;
-     border-color: aqua;
+     border-color: grey;
      border-width: 3px;
  }
 
  button {
-     background-color: aqua;
+     background-color: grey;
      border-radius: 20px;
      border-color: black;
      font-size: 22px;

@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 <!DOCTYPE html>
-
 <html>
 <head>
     <link rel="stylesheet" href="/static/assets/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doodleclo.</title>
+    <title>Doodleclo</title>
 </head>
 {% block content %}
 <body>
@@ -13,12 +12,19 @@
     <strong id="bgtext">MORE THAN CLOTHING</strong>
 </div>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<h1 style="text-align: center">OUR BESTSELLERS</h1>
+
 <div class="grid-wrapper">
 
     <div class="container">
         <img src="../static/assets/img/img_index/tshirt1backprint.jpg" class="image">
         <a href="shirts/productpage?productId=1">
-            <!--<a src="{#  #}{ url_for('static', filename='shirts/productpage?productId=' ~ product.productId) }}">--->
+
             <div class="overlay">
                 <div class="text">Ashor</div>
             </div>
@@ -48,63 +54,10 @@
             </div>
         </a>
     </div>
-    <div class="container">
-        <img src="/static/assets/img/img_index/tshirt5backprint.jpg" class="image">
-        <a href="shirts/productpage?productId=5">
-            <div class="overlay">
-                <div class="text">Ashor's bigger Problem</div>
-            </div>
-        </a>
-    </div>
-    <div class="container">
-        <img src="/static/assets/img/img_index/tshirt6backprint.jpg" class="image">
-        <a href="shirts/productpage?productId=6">
-            <div class="overlay">
-                <div class="text">Ashor's escape</div>
-            </div>
-        </a>
-    </div>
-    <div class="container">
-        <img src="/static/assets/img/img_index/tshirt7backprint.jpg" class="image">
-        <a href="shirts/productpage?productId=7">
-            <div class="overlay">
-                <div class="text">King of the City</div>
-            </div>
-        </a>
-    </div>
-    <div class="container">
-        <img src="/static/assets/img/img_index/tshirt8backprint.jpg" class="image">
-        <a href="shirts/productpage?productId=8">
-            <div class="overlay">
-                <div class="text">Ashor's destiny</div>
-            </div>
-        </a>
-    </div>
-    <div class="container">
-        <img src="/static/assets/img/img_index/tshirt9backprint.jpg" class="image">
-        <a href="shirts/productpage?productId=9">
-            <div class="overlay">
-                <div class="text">Fainting...</div>
-            </div>
-        </a>
-    </div>
-    <div class="container">
-        <img src="/static/assets/img/img_index/tshirt10backprint.jpg" class="image">
-        <a href="shirts/productpage?productId=10">
-            <div class="overlay">
-                <div class="text">Recovery</div>
-            </div>
-        </a>
-    </div>
-    <div class="container">
-        <img src="../static/assets/img/img_index/tshirt11backprint.jpg" class="image">
-        <a href="shirts/productpage?productId=11">
-            <div class="overlay">
-                <div class="text">King</div>
-            </div>
-        </a>
-    </div>
+    </a>
 </div>
+</div>
+
 </body>
 
 {% endblock %}
