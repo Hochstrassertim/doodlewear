@@ -44,6 +44,7 @@ body {
 #product-page{
     margin-top: -55px;
     background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     padding: 30px;
     display: grid;
     grid-template-columns: 0.9fr 1.1fr;
