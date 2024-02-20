@@ -109,6 +109,7 @@ nav .navbar .menu {
 .navbar .actions .action-button img {
     height: 30px;
     width: auto;
+    right: 100%;
 }
 
 .navbar .menu li a:hover, .nav-home:hover {
@@ -117,6 +118,7 @@ nav .navbar .menu {
     padding: 5px;
     transition: all 0.3s ease-in-out;
     border-radius: 5px;
+
 }
 
 .navbar .actions .action-button:hover {
@@ -131,6 +133,8 @@ nav .navbar .menu {
 }
 .navbar .hamburger-menu {
     display: none;
+    margin: 20px;
+
 }
 
 @media screen and (max-width: 768px) {
@@ -157,9 +161,9 @@ nav .navbar .menu {
             right: 0 !important;
                         }
           .menu__btn {
-            position: fixed;
-             top: 100px;
-             right: 30px;
+            position: absolute;
+             top: 105%;
+             right: 2%;
              width: 26px;
              height: 26px;
              cursor: pointer;
@@ -183,11 +187,12 @@ nav .navbar .menu {
                     }
           .menu__box {
               display: block;
-              position: fixed;
+              position: absolute;
               top: 106px;
               right: -100%;
               width: 200px;
-              height: 100%;
+              height: 600%;
+              border: white;
               margin: 0px;
               padding: 40px 0;
               list-style: none;
