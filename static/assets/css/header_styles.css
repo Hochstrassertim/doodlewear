@@ -186,19 +186,21 @@ nav .navbar .menu {
              top: 8px;
                     }
           .menu__box {
+
               display: block;
               position: absolute;
               top: 106px;
               right: -100%;
               width: 200px;
-              height: 600%;
+              height: 550%;
               border: white;
               margin: 0px;
-              padding: 40px 0;
+              padding: 10px 0;
               list-style: none;
               background-color: #2d2b2b;
               box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
               transition-duration: .25s;
+              border-radius: 20px;
             }
                 .menu__item {
                   display: block;
