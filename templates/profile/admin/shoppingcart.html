@@ -10,7 +10,7 @@
 <body>
     <div class="sidevar" id="sidebar">
         <div class="sidebar-close">
-            <i class="fa-solid- fa-close"></i>
+            <i class="fa-solid fa-close"></i>
         </div>
         <div class="cart-menu">
             <h3>My Cart</h3>
@@ -32,7 +32,7 @@
             const cartItemList = document.querySelector('.cart-items');
             const cartTotal = document.querySelector('.cart-total');
             const cartIcon = document.querySelector('.cart-icon');
-            const sidebar = document.querySelector('sidebar');
+            const sidebar = document.querySelector('.sidebar');
 
             let cartItems = [];
             let totalAmount = 0;
@@ -82,7 +82,7 @@
                         `;
                         cartItemList.append(cartItem);
                     });
-                    const  removeButtons = document.querySelectorAll('.remove-item');
+                    const  removeButtons = document.querySelectorAll('.remove-btn');
                     removeButtons.forEach((button)=>{
                         button.addEventListener('click', (event)=>{
                             const  index = event.target.dataset.index;

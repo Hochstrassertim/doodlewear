@@ -36,7 +36,18 @@
                 <a href="/logout">Logout</a>
               </div>
             </div>
-            <a href="#" class="action-button"><img src="/static/assets/img/shopping_bag.png" alt="Shopping Bag"></a>
+            <div>
+                <button class="action-button" id="toggle-sidebar">
+                    <img src="/static/assets/img/shopping_bag.png" alt="Shopping Bag">
+                </button>
+            </div>
+                <script>
+                    document.getElementById('toggle-sidebar').addEventListener('click', function() {
+                        const sidebar = document.getElementById('sidebar');
+                    sidebar.classList.toggle('open');
+                    });
+                </script>
+
         </div>
     </div>
 </nav>
