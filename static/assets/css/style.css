@@ -93,6 +93,10 @@ body {
     border-radius: 30px;
 }
 
+.submit-btn2:hover .text {
+    opacity: 1;
+}
+
 @media (max-width: 768px) {
     .grid-wrapper {
         grid-template-columns: repeat(2, 1fr);
