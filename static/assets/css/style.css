@@ -26,7 +26,6 @@ body {
 .grid-wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 0.8fr 0.8fr;
     gap: 40px 30px;
     grid-auto-flow: row;
     max-width: 100%;
@@ -80,6 +79,18 @@ body {
 
 .container:hover .text {
     opacity: 1;
+}
+
+.submit-btn2 {
+    width: 15%;
+    margin-bottom: 150px;
+    margin-left: 800px;
+    padding: 20px 20px;
+    cursor: pointer;
+    background: #999;
+    border: 0;
+    outline: none;
+    border-radius: 30px;
 }
 
 @media (max-width: 768px) {
