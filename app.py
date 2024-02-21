@@ -30,6 +30,11 @@ def color():
     return render_template("color.html")
 
 
+@app.route('/contact')
+def contact():
+    return render_template("contactform.html")
+
+
 @app.route('/shop')
 def shop():
     return render_template("shop.html")
@@ -100,13 +105,15 @@ def register():
             # Set the session for the newly registered user
             session["name"] = username
 
-            response_data = {'success': True, 'message': 'Registration successful. You will be redirected in a few seconds.'}
+            response_data = {'success': True,
+                             'message': 'Registration successful. You will be redirected in a few seconds.'}
             return render_template("profile/login_redirect.html", response_data=response_data)
 
         except Exception as e:
             return jsonify({'success': False, 'message': 'Error registering user: {}'.format(str(e))})
 
         return render_template("profile/index.html")
+
 
 @app.route("/profile")
 def profile():
@@ -115,12 +122,14 @@ def profile():
     response_data = {'username': session["name"]}
     return render_template('profile/profile.html', response_data=response_data)
 
+
 @app.route("/profile/settings")
 def settings():
     if not session.get("name"):
         return redirect("/login")
     response_data = {'username': session["name"]}
     return render_template('profile/settings.html', response_data=response_data)
+
 
 @app.route("/profile/settings/change_password", methods=['GET', 'POST'])
 def change_password_route():
@@ -146,6 +155,7 @@ def change_password_route():
         response_data = {'message': ''}
         return render_template('profile/index.html', response_data=response_data)
 
+
 @app.route("/profile/settings/change_username", methods=['GET', 'POST'])
 def change_username_route():
     if not session.get("name"):
@@ -162,6 +172,7 @@ def change_username_route():
         session["name"] = None
 
     return redirect("/profile/settings")
+
 
 @app.route("/profile/settings/change_address", methods=['GET', 'POST'])
 def change_address_route():
@@ -183,6 +194,7 @@ def change_address_route():
 
     return redirect("/profile/settings")
 
+
 @app.route("/profile/settings/delete_account", methods=['GET'])
 def delete_account_route():
     if not session.get("name"):
@@ -190,10 +202,12 @@ def delete_account_route():
 
     return render_template('profile/confirm_delete.html')
 
+
 @app.route("/logout")
 def logout():
     session["name"] = None
     return redirect("/login")
+
 
 @app.route("/profile/settings/delete_account/confirm", methods=['GET'])
 def delete_account_confirm_route():
@@ -208,6 +222,7 @@ def delete_account_confirm_route():
     session["name"] = None
     return redirect("/")
 
+
 @app.route("/admin")
 def admin_route():
     if not session.get("role") == "admin":
@@ -216,6 +231,7 @@ def admin_route():
         return redirect(url_for('login', message="You do not have permission to perform this action"))
     return render_template("profile/admin/index.html", response_data={})
 
+
 @app.route('/admin/view_products')
 def view_products():
     conn = connect_to_database()
@@ -223,7 +239,9 @@ def view_products():
     data = list_products(cursor)
     cursor.close()
     conn.close()
-    return render_template('profile/admin/view_products.html', data=data, response_data={'username': session.get('name')})
+    return render_template('profile/admin/view_products.html', data=data,
+                           response_data={'username': session.get('name')})
+
 
 @app.route('/admin/edit_product', methods=['GET'])
 def edit_product():
@@ -237,7 +255,8 @@ def edit_product():
     data = view_single_product(cursor, productId)
     cursor.close()
     conn.close()
-    return render_template('profile/admin/edit_product.html', data=data, response_data={'username': session.get('name')})
+    return render_template('profile/admin/edit_product.html', data=data,
+                           response_data={'username': session.get('name')})
 
 
 @app.route('/admin/edit_product/save', methods=['POST'])
@@ -263,7 +282,7 @@ def save_edit_product():
         cursor.close()
         conn.close()
 
-        #return jsonify({'success': True, 'message': 'Product updated successfully', 'data': data})
+        # return jsonify({'success': True, 'message': 'Product updated successfully', 'data': data})
         return redirect("/admin/view_products?productId=" + str(productId))
 
     except Exception as e:
@@ -279,9 +298,8 @@ def productpage():
     current_data = data[0]
     cursor.close()
     conn.close()
-    return render_template('shirts/productpage.html', data=current_data, response_data={'username': session.get('name')})
-
-
+    return render_template('shirts/productpage.html', data=current_data,
+                           response_data={'username': session.get('name')})
 
 
 if __name__ == '__main__':

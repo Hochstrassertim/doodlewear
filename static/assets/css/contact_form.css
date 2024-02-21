@@ -1,5 +1,7 @@
-* {
-    background-color: black;
+body {
+    background-color: #222;
+    font-family: Nunito, sans-serif;
+    justify-content: center;
 }
 
 h1 {
@@ -7,17 +9,38 @@ h1 {
     padding-top: 10px;
     text-align: center;
     font-size: 60px;
-    font-family: serif;
+    font-family: Nunito, sans-serif;
 }
 
-input{
+.block {
+    width: 100%;
+    max-width: 1000px;
+    padding: 1em;
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.SMbtn {
+    background: #999;
+    border-radius: 30px;
+}
+
+input {
     background-color: white;
     width: 70%;
     margin-left: 12%;
     font-size: 20px;
     padding: 16px 16px;
     border-radius: 10px;
-    border-color: black;
+    border: none;
     margin-bottom: 20px;
 }
 
@@ -28,35 +51,21 @@ textarea {
     font-size: 20px;
     padding: 16px 16px;
     border-radius: 10px;
-    border-color: black;
     margin-bottom: 25px;
-    font-family: serif;
+    font-family: Nunito, sans-serif;
+    border: none;
 }
 
- input:focus-within {
-     outline: none;
-     border-color: grey;
-     border-width: 3px;
- }
+button {
+    font-size: 22px;
+    padding: 10px 10px;
+    text-align: center;
+    display: flex;
+    border: none;
+    margin: auto;
+}
 
- textarea:focus-within {
-     outline: none;
-     border-color: grey;
-     border-width: 3px;
- }
-
- button {
-     background-color: grey;
-     border-radius: 20px;
-     border-color: black;
-     font-size: 22px;
-     padding: 10px 10px;
-     text-align: center;
-     display: flex;
-     margin: auto;
- }
-
- button:hover {
-     opacity: 80%;
-     cursor: pointer;
- }
+button:hover {
+    opacity: 80%;
+    cursor: pointer;
+}
