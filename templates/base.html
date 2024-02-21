@@ -61,12 +61,26 @@
         </div>
     </nav>
 </header>
+<script src="/static/assets/js/header_appear.js"></script>
 <body>
 
 
 {% block content %}
 {% endblock %}
-
+<script>
+  let lastScrollTop = 0; // Variable, um die letzte Scroll-Position zu speichern
+  window.addEventListener("scroll", function() {
+    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    if (currentScroll > lastScrollTop) {
+      // Nach unten scrollen
+      document.querySelector("header").style.top = "-75px"; // Header ausblenden
+    } else {
+      // Nach oben scrollen
+      document.querySelector("header").style.top = "0"; // Header einblenden
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Negative Werte vermeiden
+  }, false);
+</script>
 </body>
 <footer>
     <div class="footer">
