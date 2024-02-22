@@ -10,8 +10,8 @@
 {% block content %}
 <body>
     <h1>Edit Product</h1>
-    <form id="editProductForm">
-        <input type="hidden" id="productId" value="{{ data[0].get('id') }}">
+    <form id="editProductForm" enctype="multipart/form-data" method="post" action="/admin/edit_product/save">
+        <input type="hidden" id="productId" name="productId" value="{{ data[0].get('id') }}">
         <table border="1">
             <tr class="table_head">
                 <th>Id</th>
@@ -27,16 +27,16 @@
             {% for row in data %}
                 <tr class="table_data">
                     <td><p>{{ row.get('id') }}</p></td>
-                    <td><input id="name" type="text" value="{{ row.get('name') }}" onchange="updatePreview()"></td>
-                    <td><textarea id="description" onchange="updatePreview()">{{ row.get('description') }}</textarea></td>
-                    <td><input id="price" type="number" value="{{ row.get('price') }}"></td>
-                    <td><input id="available" type="number" min="-1" value="{{ row.get('available') }}"></td>
-                    <td><textarea id="story">{{ row.get('story') }}</textarea></td>
-                    <td><input id="picture" type="text" value="{{ row.get('picture') }}"></td>
-                    <td><input id="discount" type="text" value="{{ row.get('discount') }}"></td>
+                    <td><input id="name" type="text" name="name" value="{{ row.get('name') }}" onchange="updatePreview()"></td>
+                    <td><textarea id="description" name="description" onchange="updatePreview()">{{ row.get('description') }}</textarea></td>
+                    <td><input id="price" name="price" type="number" value="{{ row.get('price') }}"></td>
+                    <td><input id="available" name="available" type="number" min="-1" value="{{ row.get('available') }}"></td>
+                    <td><textarea id="story" name="story">{{ row.get('story') }}</textarea></td>
+                    <td><input id="picture" name="file" type="file"></td>
+                    <td><input id="discount" name="discount" type="text" value="{{ row.get('discount') }}"></td>
                     <td>
-                        <button onclick="saveProduct()">Save</button>
-                        <button onclick="reload()">Cancel edit</button>
+                        <button type="submit">Save</button>
+                        <button type="button" onclick="cancelEditing()">Cancel edit</button>
                     </td>
                 </tr>
             {% endfor %}

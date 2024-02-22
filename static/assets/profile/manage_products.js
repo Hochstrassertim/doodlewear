@@ -2,6 +2,10 @@ function reload() {
     window.location.href = window.location.href;
 }
 
+function cancelEditing() {
+    window.location.href = "view_products";
+}
+
 function selectProcuctToEdit(input) {
     if (input == null) {
         window.location.href = "/admin/view_products"
@@ -17,26 +21,24 @@ function saveProduct() {
     const price = parseFloat(document.getElementById('price').value);
     const available = parseInt(document.getElementById('available').value);
     const story = document.getElementById('story').value;
-    const picture = document.getElementById('picture').value;
+    const pictureInput = document.getElementById('picture');
     const discount = document.getElementById('discount').value;
 
-    const data = {
-        productId: productId,
-        name: name,
-        description: description,
-        price: price,
-        available: available,
-        story: story,
-        picture: picture,
-        discount: discount,
-    };
+    console.log(productId)
+
+    const formData = new FormData();
+    formData.append('productId', productId);
+    formData.append('name', name);
+    formData.append('description', description);
+    formData.append('price', price);
+    formData.append('available', available);
+    formData.append('story', story);
+    formData.append('picture', pictureInput.files[0]);
+    formData.append('discount', discount);
 
     fetch('/admin/edit_product/save', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        body: formData,
     })
     .then(response => response.json())
     .then(result => {
@@ -48,6 +50,7 @@ function saveProduct() {
         // Optionally handle error or show a message to the user
     });
 }
+
 
 function updatePreview() {
         document.getElementById("previewDescription").textContent = document.getElementById("description").value;

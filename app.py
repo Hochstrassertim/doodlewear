@@ -1,13 +1,23 @@
-from flask import Flask, request, render_template, redirect, session, jsonify, url_for
+from flask import Flask, request, render_template, redirect, session, jsonify, url_for, send_from_directory
 from flask_session import Session
 from manage_account import *
 from admin import *
 from socket import *
 from psycopg2 import *
+from werkzeug.utils import secure_filename
+from cart import list_cart_products
+import os
 
 server_hostname = "srv-cn5lbkgl5elc73e7hus0-hibernate-689d6995f9-v54tm"
 
 app = Flask(__name__)
+
+ALLOWED_EXTENSIONS = {'png', 'jpg'}
+UPLOAD_FOLDER = os.path.abspath(os.path.join(app.root_path, 'uploads'))
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
 
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
@@ -105,15 +115,13 @@ def register():
             # Set the session for the newly registered user
             session["name"] = username
 
-            response_data = {'success': True,
-                             'message': 'Registration successful. You will be redirected in a few seconds.'}
+            response_data = {'success': True, 'message': 'Registration successful. You will be redirected in a few seconds.'}
             return render_template("profile/login_redirect.html", response_data=response_data)
 
         except Exception as e:
             return jsonify({'success': False, 'message': 'Error registering user: {}'.format(str(e))})
 
         return render_template("profile/index.html")
-
 
 @app.route("/profile")
 def profile():
@@ -122,14 +130,12 @@ def profile():
     response_data = {'username': session["name"]}
     return render_template('profile/profile.html', response_data=response_data)
 
-
 @app.route("/profile/settings")
 def settings():
     if not session.get("name"):
         return redirect("/login")
     response_data = {'username': session["name"]}
     return render_template('profile/settings.html', response_data=response_data)
-
 
 @app.route("/profile/settings/change_password", methods=['GET', 'POST'])
 def change_password_route():
@@ -155,7 +161,6 @@ def change_password_route():
         response_data = {'message': ''}
         return render_template('profile/index.html', response_data=response_data)
 
-
 @app.route("/profile/settings/change_username", methods=['GET', 'POST'])
 def change_username_route():
     if not session.get("name"):
@@ -172,7 +177,6 @@ def change_username_route():
         session["name"] = None
 
     return redirect("/profile/settings")
-
 
 @app.route("/profile/settings/change_address", methods=['GET', 'POST'])
 def change_address_route():
@@ -194,7 +198,6 @@ def change_address_route():
 
     return redirect("/profile/settings")
 
-
 @app.route("/profile/settings/delete_account", methods=['GET'])
 def delete_account_route():
     if not session.get("name"):
@@ -202,12 +205,10 @@ def delete_account_route():
 
     return render_template('profile/confirm_delete.html')
 
-
 @app.route("/logout")
 def logout():
     session["name"] = None
     return redirect("/login")
-
 
 @app.route("/profile/settings/delete_account/confirm", methods=['GET'])
 def delete_account_confirm_route():
@@ -222,7 +223,6 @@ def delete_account_confirm_route():
     session["name"] = None
     return redirect("/")
 
-
 @app.route("/admin")
 def admin_route():
     if not session.get("role") == "admin":
@@ -231,17 +231,16 @@ def admin_route():
         return redirect(url_for('login', message="You do not have permission to perform this action"))
     return render_template("profile/admin/index.html", response_data={})
 
-
 @app.route('/admin/view_products')
 def view_products():
+    if not session.get("role") == "admin":
+        return redirect(url_for('login', message="You do not have permission to perform this action"))
     conn = connect_to_database()
     cursor = conn.cursor()
     data = list_products(cursor)
     cursor.close()
     conn.close()
-    return render_template('profile/admin/view_products.html', data=data,
-                           response_data={'username': session.get('name')})
-
+    return render_template('profile/admin/view_products.html', data=data, response_data={'username': session.get('name')})
 
 @app.route('/admin/edit_product', methods=['GET'])
 def edit_product():
@@ -255,39 +254,55 @@ def edit_product():
     data = view_single_product(cursor, productId)
     cursor.close()
     conn.close()
-    return render_template('profile/admin/edit_product.html', data=data,
-                           response_data={'username': session.get('name')})
+    return render_template('profile/admin/edit_product.html', data=data, response_data={'username': session.get('name')})
 
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/admin/edit_product/save', methods=['POST'])
 def save_edit_product():
     if not session.get("role") == "admin":
         return redirect(url_for('login', message="You do not have permission to perform this action"))
+
     try:
-        data = request.get_json()
-        productId = int(data.get("productId"))
-        name = data.get("name")
-        description = data.get('description')
-        price = float(data.get('price'))
-        available = int(data.get('available'))
-        story = data.get('story')
-        picture = data.get('picture')
-        discount = data.get('discount')
+        productId = request.form.get("productId")
+        name = request.form.get("name")
+        description = request.form.get('description')
+        price = request.form.get('price')
+        available = request.form.get('available')
+        story = request.form.get('story')
+        discount = request.form.get('discount')
 
-        conn = connect_to_database()
-        cursor = conn.cursor()
-        update_product(cursor, productId, name, description, price, available, story, picture, discount)
-        data = view_single_product(cursor, productId)
-        conn.commit()
-        cursor.close()
-        conn.close()
+        picture = request.files.get('file')
 
-        # return jsonify({'success': True, 'message': 'Product updated successfully', 'data': data})
-        return redirect("/admin/view_products?productId=" + str(productId))
+        if picture and allowed_file(picture.filename):
+            # Ensure that the UPLOAD_FOLDER exists
+            if not os.path.exists(app.config['UPLOAD_FOLDER']):
+                os.makedirs(app.config['UPLOAD_FOLDER'])
+
+            filename = secure_filename(picture.filename)
+            upload_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            picture.save(upload_path)
+
+            print(f"File saved at: {upload_path}")
+
+            conn = connect_to_database()
+            cursor = conn.cursor()
+            update_product(cursor, productId, name, description, price, available, story, filename, discount)
+            data = view_single_product(cursor, productId)
+            conn.commit()
+            cursor.close()
+            conn.close()
+
+            print(f"Product {productId} updated successfully")
+            return redirect("/admin/view_products?productId=" + str(productId))
+        else:
+            print("Invalid file format")
+            return jsonify({'success': False, 'message': 'Invalid file format. Allowed formats: png, jpg'})
 
     except Exception as e:
+        print(f'Error updating product: {str(e)}')
         return jsonify({'success': False, 'message': f'Error updating product: {str(e)}'})
-
 
 @app.route('/shirts/productpage', methods=['GET'])
 def productpage():
@@ -298,9 +313,32 @@ def productpage():
     current_data = data[0]
     cursor.close()
     conn.close()
+    return render_template('shirts/productpage.html', data=current_data, response_data={'username': session.get('name')})
+
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+@app.route('/cart/receive_data', methods=['GET'])
+def receive_cart_data():
+    conn = connect_to_database()
+    cursor = conn.cursor()
+    data = list_cart_products(cursor, session["name"])
+    conn.commit()
+    cursor.close()
+    conn.close()
     return render_template('shirts/productpage.html', data=current_data,
                            response_data={'username': session.get('name')})
 
+@app.route('/upload_image', methods=['POST', 'GET'])
+def upload_image():
+    if request.method == 'POST':
+        f = request.files['file']
+        filename = secure_filename(f.filename)
+
+        f.save(app.config['UPLOAD_FOLDER'] + filename)
+
+        file = open(app.config['UPLOAD_FOLDER'] + filename, "r")
 
 if __name__ == '__main__':
     app.run(debug=True)

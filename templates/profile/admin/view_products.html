@@ -17,9 +17,14 @@
         </tr>
         {% for row in data %}
             <tr class="table_data">
-                {% for value in row.values() %}
-                    <td>{{ value }}</td>
-                {% endfor %}
+                <td><p>{{ row.get('id') }}</p></td>
+                <td><p>{{ row.get('name') }}</p></td>
+                <td><p>{{ row.get('description') }}</p></td>
+                <td><p>{{ row.get('price') }}</p></td>
+                <td><p>{{ row.get('available') }}</p></td>
+                <td><p>{{ row.get('story') }}</p></td>
+                <td><img style="max-width: 100px; max-height: 55px;" src="{{ url_for('uploaded_file', filename=row.get('picture')) }}" alt="Image not found" id="product_{{ row.get('id') }}"></td>
+                <td><p>{{ row.get('discount') }}</p></td>
             <td><button onclick="selectProcuctToEdit({{ row.get('id') }})">Edit</button></td>
             </tr>
         {% endfor %}
