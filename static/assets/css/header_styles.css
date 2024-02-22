@@ -11,7 +11,7 @@
 }
 
 header {
-    
+
     width: 100%;
     background-color: #2d2b2b;
     color: #fff;
@@ -144,7 +144,7 @@ nav .navbar .menu {
 
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1075px) {
 
 
     .navbar .hamburger-menu {

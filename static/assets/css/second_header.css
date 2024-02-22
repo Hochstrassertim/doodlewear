@@ -162,3 +162,155 @@ nav .navbar .menu {
     padding: 0;
 }
 
+.navbar .hamburger-menu {
+    display: none;
+    margin: 20px;
+
+}
+
+@media screen and (max-width: 768px) {
+
+
+    .navbar .hamburger-menu {
+    display: flex;
+}
+    .navbar .actions .hamburger-menu {
+          #menu__toggle {
+             opacity: 0;
+                        }
+          #menu__toggle:checked + .menu__btn > span {
+            transform: rotate(45deg);
+                        }
+          #menu__toggle:checked + .menu__btn > span::before {
+            top: 0;
+            transform: rotate(0deg);
+                        }
+          #menu__toggle:checked + .menu__btn > span::after {
+            top: 0;
+            transform: rotate(90deg);
+                        }
+          #menu__toggle:checked ~ .menu__box {
+            right: 0 !important;
+                        }
+          .menu__btn {
+            position: absolute;
+             top: 45%;
+             right: 5%;
+             width: 26px;
+             height: 26px;
+             cursor: pointer;
+             z-index: 2;
+                        }
+          .menu__btn > span,.menu__btn > span::before,.menu__btn > span::after {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: #ffffff;
+            transition-duration: .25s;
+                    }
+          .menu__btn > span::before {
+             content: '';
+             top: -8px;
+                    }
+          .menu__btn > span::after {
+             content: '';
+             top: 8px;
+                    }
+          .menu__box {
+
+              display: block;
+              position: absolute;
+              top: 125px;
+              right: -100%;
+              width: 200px;
+              height: 550%;
+              border: white;
+              margin: 0px;
+              padding: 10px 0;
+              list-style: none;
+              background-color: #2d2b2b;
+              box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+              transition-duration: .25s;
+              border-radius: 20px;
+            }
+                .menu__item {
+                  display: block;
+                  padding: 12px 24px;
+                  color: #ffffff;
+                  font-family: Nunito, sans-serif;
+                  font-size: 20px;
+                  font-weight: 600;
+                  text-decoration: none;
+                  transition-duration: .25s;
+                }
+                .menu__item:hover {
+                  background-color: #999;
+                }
+
+    }
+    nav .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar .actions .action-button {
+        display: none;
+    }
+
+    nav .navbar .logo, nav .navbar .actions {
+        display: flex;
+    }
+
+    nav .navbar .menu {
+        display: none;
+    }
+    nav .navbar .logo {
+        justify-content: flex-start;
+    }
+
+    .navbar .hamburger-icon {
+        display: block;
+    }
+
+
+    .hamburger-icon {
+        display: block;
+        justify-content: flex-end;
+    }
+
+    .hamburger-icon img {
+        width: 60px;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .navbar-name {
+        flex-grow: 1;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
