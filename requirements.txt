@@ -10,4 +10,3 @@ flask_session
 psycopg2
 requests
 jsonify
-os
