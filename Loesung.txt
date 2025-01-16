@@ -1,0 +1,102 @@
+import argparse
+import os
+import shutil
+import sys
+
+# Literals for the paths
+TEMPLATE_PATH = r'C:/tempM122/vmware/vmTemplates/'
+COPY_PATH = r'C:/tempM122/vmware/vmCopies/'
+
+
+def main():
+    """
+    Main function
+    """
+    vmname, users = parse_arguments()
+    check_folders(vmname)
+    vm_copy(vmname, users)
+
+
+def parse_arguments():
+    """
+    Parse the arguments
+    :return: the vmname and a list of users
+    """
+    parser = argparse.ArgumentParser(description="Copy VM templates for users.")
+    parser.add_argument(
+        "-vm", "--vmname", required=True, help="Name of the VM template to copy"
+    )
+    parser.add_argument(
+        "-u", "--users", nargs="+", required=True, help="List of users to create copies for"
+    )
+    args = parser.parse_args()
+    return args.vmname, args.users
+
+
+def check_folders(vmname):
+    """
+    Check if the folders exist
+    :param vmname: the name of the vm to copy
+    """
+    template_folder = os.path.join(TEMPLATE_PATH, vmname)
+    if not os.path.exists(template_folder):
+        print(f"Error: Template folder '{template_folder}' does not exist.")
+        sys.exit(1)
+    if not os.path.exists(COPY_PATH):
+        os.makedirs(COPY_PATH)
+        print(f"Created missing folder: {COPY_PATH}")
+
+
+def vm_copy(vmname, users):
+    """
+    Copy the VM to the users
+    :param vmname: the name of the vm to copy
+    :param users: a list of users to create copies for
+    """
+    for user in users:
+        create_copies(vmname, user)
+
+
+def create_copies(vmname, user):
+    """
+    Copy the files from the template to the user folder, changing the name of the files
+    :param vmname: the name of the vm to copy
+    :param user: the user to create the copy for
+    """
+    template_folder = os.path.join(TEMPLATE_PATH, vmname)
+    user_folder = os.path.join(COPY_PATH, f"{user}_{vmname}")
+    if os.path.exists(user_folder):
+        print(f"Skipping: Folder for user '{user}' already exists.")
+        return
+    try:
+        shutil.copytree(template_folder, user_folder)
+        print(f"Copied VM for user '{user}' to '{user_folder}'")
+        update_config(vmname, user_folder)
+    except Exception as e:
+        print(f"Error copying VM for user '{user}': {e}")
+
+
+def update_config(vmname, user_folder):
+    """
+    Update the configuration files
+    :param vmname: the name of the vm to copy
+    :param user_folder: the folder for the user's VM copy
+    """
+    config_file = os.path.join(user_folder, f"{vmname}.vmx")
+    if os.path.exists(config_file):
+        try:
+            with open(config_file, "r") as file:
+                content = file.read()
+            # Example: Replace "TEMPLATE_USER" with the actual folder name
+            content = content.replace("TEMPLATE_USER", os.path.basename(user_folder))
+            with open(config_file, "w") as file:
+                file.write(content)
+            print(f"Updated configuration file: {config_file}")
+        except Exception as e:
+            print(f"Error updating config file '{config_file}': {e}")
+    else:
+        print(f"Warning: Config file '{config_file}' does not exist.")
+
+
+if __name__ == '__main__':
+    main()
